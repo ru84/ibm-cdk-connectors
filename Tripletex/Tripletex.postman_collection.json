@@ -1,0 +1,142 @@
+{
+	"info": {
+		"_postman_id": "296e35e7-ae6a-496b-b225-74ef31573a97",
+		"name": "Tripletex",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27289519"
+	},
+	"item": [
+		{
+			"name": "Create Session Token",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/v2/token/session/:create?consumerToken=eyJ0b2tlbklkIjoyNjQyLCJ0b2tlbiI6InRlc3QtNzJiYzJjNDktM2FhOC00MjBjLWJmMWMtMzUzNjU2MjgzOTc5In0%3D&employeeToken=eyJ0b2tlbklkIjo0MjYyLCJ0b2tlbiI6InRlc3QtMGRiYjA4YTYtYTVkNC00ODViLTg2MWUtODRkZWRkMzFjODMxIn0&expirationDate=2023-08-30T00%3A00%3A00Z",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"v2",
+						"token",
+						"session",
+						":create"
+					],
+					"query": [
+						{
+							"key": "consumerToken",
+							"value": "eyJ0b2tlbklkIjoyNjQyLCJ0b2tlbiI6InRlc3QtNzJiYzJjNDktM2FhOC00MjBjLWJmMWMtMzUzNjU2MjgzOTc5In0%3D"
+						},
+						{
+							"key": "employeeToken",
+							"value": "eyJ0b2tlbklkIjo0MjYyLCJ0b2tlbiI6InRlc3QtMGRiYjA4YTYtYTVkNC00ODViLTg2MWUtODRkZWRkMzFjODMxIn0"
+						},
+						{
+							"key": "expirationDate",
+							"value": "2023-08-30T00%3A00%3A00Z"
+						}
+					],
+					"variable": [
+						{
+							"key": "create",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Company by ID",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/v2/company/12619417",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"v2",
+						"company",
+						"12619417"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Employees",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/v2/employee?from=0&count=10",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"v2",
+						"employee"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "0"
+						},
+						{
+							"key": "count",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

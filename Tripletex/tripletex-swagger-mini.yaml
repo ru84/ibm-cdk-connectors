@@ -1,0 +1,68 @@
+openapi: 3.0.3
+info:
+  title: Tripletex
+  version: 1.0.0
+  contact: {}
+servers:
+  - url: 'https://api.tripletex.io'
+paths:
+  /v2/token/session/{create}:
+    put:
+      summary: Create Session Token
+      description: Create Session Token
+      operationId: createSessionToken
+      parameters:
+        - name: consumerToken
+          in: query
+          schema:
+            type: string
+            example: >-
+              eyJ0b2tlbklkIjoyNjQyLCJ0b2tlbiI6InRlc3QtNzJiYzJjNDktM2FhOC00MjBjLWJmMWMtMzUzNjU2MjgzOTc5In0%3D
+        - name: employeeToken
+          in: query
+          schema:
+            type: string
+            example: >-
+              eyJ0b2tlbklkIjo0MjYyLCJ0b2tlbiI6InRlc3QtMGRiYjA4YTYtYTVkNC00ODViLTg2MWUtODRkZWRkMzFjODMxIn0
+        - name: expirationDate
+          in: query
+          schema:
+            type: string
+            example: 2023-08-30T00%3A00%3A00Z
+      responses:
+        '200':
+          description: ''
+    parameters:
+      - name: create
+        in: path
+        required: true
+        schema:
+          type: string
+  /v2/company/12619417:
+    get:
+      summary: Get Company by ID
+      description: Get Company by ID
+      operationId: getCompanyById
+      responses:
+        '200':
+          description: ''
+  /v2/employee:
+    get:
+      summary: List Employees
+      description: List Employees
+      operationId: listEmployees
+      parameters:
+        - name: from
+          in: query
+          schema:
+            type: string
+            example: '0'
+        - name: count
+          in: query
+          schema:
+            type: string
+            example: '10'
+      responses:
+        '200':
+          description: ''
+tags: []

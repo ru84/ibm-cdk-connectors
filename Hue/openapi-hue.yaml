@@ -1,0 +1,854 @@
+openapi: 3.0.3
+info:
+  title: Hue
+  description: >-
+    The Philips Hue API Collection allows developers to control Philips Hue
+    smart lights. It offers various functions, such as changing the color,
+    brightness, and saturation of the lights. The API also supports the creation
+    of schedules and timers for the lights.
+
+
+    Step 1: First make sure your bridge is connected to your network and is
+    functioning properly.
+
+
+    Step 2: Then you need to discover the IP address of the bridge on your
+    network.
+
+
+    Okay now that you have a username with permission to use the Philips system,
+    lets start having some fun with these APIs!
+
+
+    Reference:
+    [https://developers.meethue.com/develop/get-started-2/](https://developers.meethue.com/develop/get-started-2/)
+  version: 1.0.0
+  contact: {}
+servers:
+  - url: http://{{ip}}
+paths:
+  /api/{username}/lights:
+    get:
+      tags:
+        - Lights
+      summary: Get All Lights
+      description: Get All Lights
+      operationId: getAllLights
+      responses:
+        '200':
+          description: ''
+    parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+  /api/{username}/lights/2/state:
+    put:
+      tags:
+        - Lights
+      summary: Put Light State
+      description: Put Light State
+      operationId: putLightState
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                'on':
+                  type: boolean
+                  example: true
+            example:
+              'on': true
+      responses:
+        '200':
+          description: ''
+    parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+  /api/{username}/lights/6:
+    delete:
+      tags:
+        - Lights
+      summary: Delete Light From Bridge
+      description: Delete Light From Bridge
+      operationId: deleteLightFromBridge
+      requestBody:
+        content:
+          text/plain:
+            example: ''
+      responses:
+        '200':
+          description: ''
+    parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+  /api/{username}/config:
+    get:
+      tags:
+        - Bridge Config
+      summary: Get Config
+      description: Get Config
+      operationId: getConfig
+      responses:
+        '200':
+          description: ''
+    put:
+      tags:
+        - Bridge Config
+      summary: Put Config
+      description: Put Config
+      operationId: putConfig
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                timezone:
+                  type: string
+                  example: Europe/London
+            example:
+              timezone: Europe/London
+      responses:
+        '200':
+          description: ''
+    parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+  /api/{username}/groups:
+    get:
+      tags:
+        - Group
+      summary: Get All Groups
+      description: Get All Groups
+      operationId: getAllGroups
+      responses:
+        '200':
+          description: ''
+    post:
+      tags:
+        - Group
+      summary: Create Group
+      description: Create Group
+      operationId: createGroup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                lights:
+                  type: array
+                  items:
+                    type: string
+                    example: '28'
+                  example:
+                    - '28'
+                    - '29'
+                    - '31'
+                    - '32'
+                    - '33'
+                    - '34'
+                    - '35'
+                    - '36'
+                    - '37'
+                    - '38'
+                    - '39'
+                    - '40'
+                    - '41'
+                    - '45'
+                name:
+                  type: string
+                  example: delete light test
+            example:
+              lights:
+                - '28'
+                - '29'
+                - '31'
+                - '32'
+                - '33'
+                - '34'
+                - '35'
+                - '36'
+                - '37'
+                - '38'
+                - '39'
+                - '40'
+                - '41'
+                - '45'
+              name: delete light test
+      responses:
+        '200':
+          description: ''
+    parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+  /api/{username}/groups/0:
+    get:
+      tags:
+        - Group
+      summary: Get Group Details
+      description: Get Group Details
+      operationId: getGroupDetails
+      responses:
+        '200':
+          description: ''
+    parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+  /api/{username}/groups/1/action:
+    put:
+      tags:
+        - Group
+      summary: Update Group State
+      description: Update Group State
+      operationId: updateGroupState
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                xy:
+                  type: array
+                  items:
+                    type: number
+                    example: 0.3
+                  example:
+                    - 0.3
+                    - 0.3
+            example:
+              xy:
+                - 0.3
+                - 0.3
+      responses:
+        '200':
+          description: ''
+    parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+  /api/{username}/schedules:
+    get:
+      tags:
+        - Schedule
+      summary: Get All Schedules
+      description: Get All Schedules
+      operationId: getAllSchedules
+      responses:
+        '200':
+          description: ''
+    post:
+      tags:
+        - Schedule
+      summary: Create Repeating Timer Schedule
+      description: Create Repeating Timer Schedule
+      operationId: createRepeatingTimerSchedule
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                command:
+                  type: object
+                  properties:
+                    address:
+                      type: string
+                      example: >-
+                        /api/woGzR67YSFkne1GJSEjCKMKPdfCWaLSBmuMN-KeA/sensors/2/state
+                    body:
+                      type: object
+                      properties:
+                        status:
+                          type: number
+                          example: 1
+                    method:
+                      type: string
+                      example: PUT
+                description:
+                  type: string
+                  example: ''
+                localtime:
+                  type: string
+                  example: R/PT00:00:10
+                name:
+                  type: string
+                  example: Test Schedule
+                recycle:
+                  type: boolean
+                  example: false
+                status:
+                  type: string
+                  example: enabled
+            example:
+              command:
+                address: /api/woGzR67YSFkne1GJSEjCKMKPdfCWaLSBmuMN-KeA/sensors/2/state
+                body:
+                  status: 1
+                method: PUT
+              description: ''
+              localtime: R/PT00:00:10
+              name: Test Schedule
+              recycle: false
+              status: enabled
+      responses:
+        '200':
+          description: ''
+    parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+  /api/{username}/schedules/:
+    post:
+      tags:
+        - Schedule
+      summary: Create Schedule
+      description: Create Schedule
+      operationId: createSchedule
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                command:
+                  type: object
+                  properties:
+                    address:
+                      type: string
+                      example: >-
+                        /api/2-PdpiAvTDO-SQokppQHSexWlfTus68WXCcHTlkg/groups/0/action
+                    body:
+                      type: object
+                      properties:
+                        bri:
+                          type: number
+                          example: 1
+                        'on':
+                          type: boolean
+                          example: true
+                        xy:
+                          type: array
+                          items:
+                            type: number
+                            example: 0.673
+                          example:
+                            - 0.673
+                            - 0.323
+                    method:
+                      type: string
+                      example: PUT
+                description:
+                  type: string
+                  example: ''
+                name:
+                  type: string
+                  example: Test_PR_Abhishek
+                status:
+                  type: string
+                  example: enabled
+                time:
+                  type: string
+                  example: '2017-03-19T14:55:00'
+            example:
+              command:
+                address: /api/2-PdpiAvTDO-SQokppQHSexWlfTus68WXCcHTlkg/groups/0/action
+                body:
+                  bri: 1
+                  'on': true
+                  xy:
+                    - 0.673
+                    - 0.323
+                method: PUT
+              description: ''
+              name: Test_PR_Abhishek
+              status: enabled
+              time: '2017-03-19T14:55:00'
+      responses:
+        '200':
+          description: ''
+    parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+  /api/{username}/schedules/2:
+    put:
+      tags:
+        - Schedule
+      summary: Edit Schedule
+      description: Edit Schedule
+      operationId: editSchedule
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                command:
+                  type: object
+                  properties:
+                    address:
+                      type: string
+                      example: >-
+                        /api/2-PdpiAvTDO-SQokppQHSexWlfTus68WXCcHTlkg/groups/0/action
+                    body:
+                      type: object
+                      properties:
+                        bri:
+                          type: number
+                          example: 1
+                        'on':
+                          type: boolean
+                          example: true
+                        xy:
+                          type: array
+                          items:
+                            type: number
+                            example: 0.673
+                          example:
+                            - 0.673
+                            - 0.323
+                    method:
+                      type: string
+                      example: PUT
+                description:
+                  type: string
+                  example: ''
+                name:
+                  type: string
+                  example: Test_PR_Abhishek
+                status:
+                  type: string
+                  example: enabled
+                time:
+                  type: string
+                  example: '2017-03-20T06:59:00'
+            example:
+              command:
+                address: /api/2-PdpiAvTDO-SQokppQHSexWlfTus68WXCcHTlkg/groups/0/action
+                body:
+                  bri: 1
+                  'on': true
+                  xy:
+                    - 0.673
+                    - 0.323
+                method: PUT
+              description: ''
+              name: Test_PR_Abhishek
+              status: enabled
+              time: '2017-03-20T06:59:00'
+      responses:
+        '200':
+          description: ''
+    parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+  /api/{username}/sensors:
+    get:
+      tags:
+        - Sensor
+      summary: Get All Sensors
+      description: Get All Sensors
+      operationId: getAllSensors
+      responses:
+        '200':
+          description: ''
+    post:
+      tags:
+        - Sensor
+      summary: Create Sensor
+      description: Create Sensor
+      operationId: createSensor
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                manufacturername:
+                  type: string
+                  example: Moldedbits
+                modelid:
+                  type: string
+                  example: randomwid
+                name:
+                  type: string
+                  example: Test Sensor
+                state:
+                  type: object
+                  properties:
+                    status:
+                      type: number
+                      example: 36000
+                swversion:
+                  type: string
+                  example: '1.0'
+                type:
+                  type: string
+                  example: CLIPGenericStatus
+                uniqueid:
+                  type: string
+                  example: '12345678'
+            example:
+              manufacturername: Moldedbits
+              modelid: randomwid
+              name: Test Sensor
+              state:
+                status: 36000
+              swversion: '1.0'
+              type: CLIPGenericStatus
+              uniqueid: '12345678'
+      responses:
+        '200':
+          description: ''
+    parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+  /api/{username}/sensors/2/state:
+    put:
+      tags:
+        - Sensor
+      summary: Update Sensor State
+      description: Update Sensor State
+      operationId: updateSensorState
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: number
+                  example: 0
+            example:
+              status: 0
+      responses:
+        '200':
+          description: ''
+    parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+  /api/{username}/scenes:
+    get:
+      tags:
+        - Scene
+      summary: Get All Scenes
+      description: Get All Scenes
+      operationId: getAllScenes
+      responses:
+        '200':
+          description: ''
+    post:
+      tags:
+        - Scene
+      summary: Create Scene
+      description: Create Scene
+      operationId: createScene
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                lights:
+                  type: array
+                  items:
+                    type: string
+                    example: '1'
+                  example:
+                    - '1'
+                    - '2'
+                name:
+                  type: string
+                  example: PR_Schedules_Test
+                recycle:
+                  type: boolean
+                  example: false
+            example:
+              lights:
+                - '1'
+                - '2'
+              name: PR_Schedules_Test
+              recycle: false
+      responses:
+        '200':
+          description: ''
+    parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+  /api/{username}/scenes/381mJSoKqbbCA0u/:
+    get:
+      tags:
+        - Scene
+      summary: Get Scene Details
+      description: Get Scene Details
+      operationId: getSceneDetails
+      responses:
+        '200':
+          description: ''
+    parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+  /api/{username}/scenes/381mJSoKqbbCA0u/lightstates/2:
+    put:
+      tags:
+        - Scene
+      summary: Edit Scene
+      description: Edit Scene
+      operationId: editScene
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                bri:
+                  type: number
+                  example: 255
+                'on':
+                  type: boolean
+                  example: true
+            example:
+              bri: 255
+              'on': true
+      responses:
+        '200':
+          description: ''
+    parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+  /api/{username}/rules:
+    get:
+      tags:
+        - Rule
+      summary: Get All Rules
+      description: Get All Rules
+      operationId: getAllRules
+      responses:
+        '200':
+          description: ''
+    post:
+      tags:
+        - Rule
+      summary: Create Rule on Localtime
+      description: Create Rule on Localtime
+      operationId: createRuleOnLocaltime
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                actions:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      address:
+                        type: string
+                        example: /scenes/381mJSoKqbbCA0u/lightstates/2
+                      body:
+                        type: object
+                        properties:
+                          bri:
+                            type: number
+                            example: 1
+                          'on':
+                            type: boolean
+                            example: true
+                      method:
+                        type: string
+                        example: PUT
+                  example:
+                    - address: /scenes/381mJSoKqbbCA0u/lightstates/2
+                      body:
+                        bri: 1
+                        'on': true
+                      method: PUT
+                    - address: /scenes/381mJSoKqbbCA0u/lightstates/1
+                      body:
+                        bri: 1
+                        'on': true
+                      method: PUT
+                conditions:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      address:
+                        type: string
+                        example: /config/localtime
+                      operator:
+                        type: string
+                        example: in
+                      value:
+                        type: string
+                        example: W127/T17:25:00/T17:25:05
+                  example:
+                    - address: /config/localtime
+                      operator: in
+                      value: W127/T17:25:00/T17:25:05
+                name:
+                  type: string
+                  example: Test Rule
+            example:
+              actions:
+                - address: /scenes/381mJSoKqbbCA0u/lightstates/2
+                  body:
+                    bri: 1
+                    'on': true
+                  method: PUT
+                - address: /scenes/381mJSoKqbbCA0u/lightstates/1
+                  body:
+                    bri: 1
+                    'on': true
+                  method: PUT
+              conditions:
+                - address: /config/localtime
+                  operator: in
+                  value: W127/T17:25:00/T17:25:05
+              name: Test Rule
+      responses:
+        '200':
+          description: ''
+    parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+  /api/{username}/rules/5:
+    put:
+      tags:
+        - Rule
+      summary: Edit Rule
+      description: Edit Rule
+      operationId: editRule
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                actions:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      address:
+                        type: string
+                        example: /scenes/381mJSoKqbbCA0u/lightstates/2
+                      body:
+                        type: object
+                        properties:
+                          bri:
+                            type: number
+                            example: 1
+                          'on':
+                            type: boolean
+                            example: true
+                      method:
+                        type: string
+                        example: PUT
+                  example:
+                    - address: /scenes/381mJSoKqbbCA0u/lightstates/2
+                      body:
+                        bri: 1
+                        'on': true
+                      method: PUT
+                    - address: /scenes/381mJSoKqbbCA0u/lightstates/1
+                      body:
+                        bri: 1
+                        'on': true
+                      method: PUT
+            example:
+              actions:
+                - address: /scenes/381mJSoKqbbCA0u/lightstates/2
+                  body:
+                    bri: 1
+                    'on': true
+                  method: PUT
+                - address: /scenes/381mJSoKqbbCA0u/lightstates/1
+                  body:
+                    bri: 1
+                    'on': true
+                  method: PUT
+      responses:
+        '200':
+          description: ''
+    delete:
+      tags:
+        - Rule
+      summary: Delete Rule
+      description: Delete Rule
+      operationId: deleteRule
+      requestBody:
+        content:
+          text/plain:
+            example: ''
+      responses:
+        '200':
+          description: ''
+    parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+tags:
+  - name: Lights
+    description: APIs related to light
+  - name: Bridge Config
+    description: Get and edit bridge config
+  - name: Group
+    description: Group Operations
+  - name: Schedule
+    description: Schedule operations
+  - name: Sensor
+    description: Sensor Operations
+  - name: Scene
+    description: Scene operations
+  - name: Rule
+    description: Rule operations

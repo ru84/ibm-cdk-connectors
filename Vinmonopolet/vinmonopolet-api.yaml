@@ -1,0 +1,381 @@
+openapi: 3.0.1
+info:
+  title: Vinmonopolet
+  description: Vinmonopolet API
+  version: v0
+servers:
+  - url: https://apis.vinmonopolet.no
+paths:
+  /products/v0/monthly-sales-per-store:
+    get:
+      summary: Get monthly sales
+      description: "CHANGED FROM 15. MARCH 2021: Monthly sales available from the 35th day after a month.\nReturns monthly sales data. \n<br>\nMonthly sales available from the 35th day after a month, at approx 07:30 AM CET. Use parameter \"changedSince\" to get any updates / corrections made to historic sales. Select only one month to avoid pagination. If you experience timeouts, use pagination by sending parameter maxResults (default 1048575 ).\n<br>\nThrottling as per 19. August 2021: Max 6 calls per minute. Max 60 calls per day."
+      parameters:
+        - name: fromSalesMonth
+          required: true
+          in: query
+          description: Returns sales occurrences in interval from this sales month yyyy-MM
+          schema:
+            type: string
+        - name: toSalesMonth
+          in: query
+          description: Returns sales occurrences in interval to this sales month yyyy-MM
+          schema:
+            type: string
+        - name: fromStoreId
+          in: query
+          description: Returns sales occurrences in interval from this store id number
+          schema:
+            type: integer
+        - name: toStoreId
+          in: query
+          description: Returns sales occurrences in interval to this store id number
+          schema:
+            type: integer
+        - name: productId
+          in: query
+          description: Returns sales occurrences for requested productId
+          schema:
+            type: integer
+        - name: vendorId
+          in: query
+          description: Returns sales occurrences for requested vendorId
+          schema:
+            type: integer
+        - name: wholesalerId
+          in: query
+          description: Returns sales occurrences for requested wholesalerId
+          schema:
+            type: integer
+        - name: changedSince
+          in: query
+          description: Returns sales occurrences that have been updated since the supplied month - only yyyy-MM-dd
+          schema:
+            type: string
+        - name: maxResults
+          in: query
+          description: Limits the maximum number of sales occurrences returned in each request
+          schema:
+            type: integer
+        - name: start
+          in: query
+          description: 'Skips the supplied amount of sales occurrences, ordered by sales month, store and productId'
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GET_PRODUCT_MONTHLY_SALES_Response'
+              example:
+                - salesMonth: string
+                  storeSales:
+                    - storeId: string
+                      sales:
+                        - productId: string
+                          salesVolume: 0
+                          salesQuantity: 0
+                          lastChanged:
+                            date: string
+                            time: string
+        '400':
+          description: Bad Request (wrong parameters/values supplied)
+        '500':
+          description: Error
+  /products/v0/details-normal:
+    get:
+      summary: Get details-normal
+      description: "CHANGED JSON RESPONSE FROM 10. APRIL 2021!\nReturns master data details on Vinmonopolet's products in basic, one lot, test and ordering ranges. <br>\nMaster data is updated approx 05:45 AM CET every day. Use parameter \"changedSince\" to get only updated products, including products that have been removed from basic, one lot, test and ordering ranges since supplied date.\n<br>\nThrottling as per 15. November 2019: Max 60 calls per minute. Max 4000 calls per day."
+      parameters:
+        - name: productId
+          in: query
+          description: Returns details of all products that match productId
+          schema:
+            type: string
+        - name: vendorId
+          in: query
+          description: Returns details of all products that match vendorId
+          schema:
+            type: integer
+        - name: manufacturerId
+          in: query
+          description: Returns details of all products that match manufacturerId
+          schema:
+            type: integer
+        - name: wholesalerId
+          in: query
+          description: Returns details of all products that match wholesalerId
+          schema:
+            type: integer
+        - name: changedSince
+          in: query
+          description: Returns details of all products that have been updated since the supplied date - only numeric yyyy-MM-dd
+          schema:
+            type: string
+        - name: productShortNameContains
+          in: query
+          description: Returns details of all products where productShortName contains the supplied string
+          schema:
+            type: string
+        - name: maxResults
+          in: query
+          description: Limits the maximum number of products returned in each request
+          schema:
+            type: integer
+        - name: start
+          in: query
+          description: 'Skips the supplied amount of products, ordered by productID'
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GET_PRODUCT_DETAILS_Response'
+              example:
+                - basic:
+                    productId: string
+                    productShortName: string
+                  lastChanged:
+                    date: string
+                    time: string
+        '400':
+          description: Bad Request (wrong parameter values given)
+        '500':
+          description: Error
+  /stores/v0/details:
+    get:
+      summary: Get store details
+      description: Returns details about stores in Vinmonopolet
+      parameters:
+        - name: storeId
+          in: query
+          description: Returns details of the Store with the given number
+          schema:
+            type: integer
+        - name: storeNameContains
+          in: query
+          description: Returns details of Stores whose name contains the provided string
+          schema:
+            type: string
+        - name: changedSince
+          in: query
+          description: Returns details of Stores which have been updated since the supplied date (yyyy-MM-dd)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GET_STORE_DETAILS_Response'
+              example:
+                - storeId: string
+                  storeName: string
+                  status: string
+                  address:
+                    street: string
+                    postalCode: string
+                    city: string
+                    gpsCoord: string
+                    globalLocationNumber: string
+                    organisationNumber: string
+                  telephone: string
+                  email: string
+                  category: string
+                  profile: string
+                  storeAssortment: string
+                  openingHours:
+                    regularHours:
+                      - dayOfTheWeek: string
+                        openingTime: string
+                        closingTime: string
+                        closed: true
+                    exceptionHours:
+                      - date: string
+                        openingTime: string
+                        closingTime: string
+                        message: string
+                  lastChanged:
+                    date: string
+                    time: string
+        '400':
+          description: Bad Request (wrong parameters/values supplied)
+        '500':
+          description: Error
+components:
+  schemas:
+    GET_PRODUCT_DETAILS_Response:
+      type: array
+      items:
+        properties:
+          basic:
+            type: object
+            properties:
+              productId:
+                type: string
+                description: Product ID
+              productShortName:
+                type: string
+                description: Product short name
+          lastChanged:
+            type: object
+            properties:
+              date:
+                type: string
+                description: Date when product was last changed
+              time:
+                type: string
+                description: Time when product was last changed
+    GET_PRODUCT_MONTHLY_SALES_Response:
+      type: array
+      items:
+        type: object
+        properties:
+          salesMonth:
+            type: string
+            description: Sales month in format yyyy-MM
+          storeSales:
+            type: array
+            items:
+              type: object
+              properties:
+                storeId:
+                  type: string
+                  description: Store ID
+                sales:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      productId:
+                        type: string
+                        description: Product ID
+                      salesVolume:
+                        type: number
+                        description: 'Sales volume in liters, with three decimals'
+                      salesQuantity:
+                        type: number
+                        description: Sales volume in number of items
+                      lastChanged:
+                        type: object
+                        properties:
+                          date:
+                            type: string
+                            description: Date when product sales last changed
+                          time:
+                            type: string
+                            description: Time when product sales last changed
+    GET_STORE_DETAILS_Response:
+      type: array
+      items:
+        type: object
+        properties:
+          storeId:
+            type: string
+            description: Store number
+          storeName:
+            type: string
+            description: Store name
+          status:
+            type: string
+            description: Status (Open/Closed/Temporarily closed/To be opened)
+          address:
+            type: object
+            properties:
+              street:
+                type: string
+                description: Street and number
+              postalCode:
+                type: string
+                description: Postal Code
+              city:
+                type: string
+                description: City
+              gpsCoord:
+                type: string
+                description: 'GPS coordinates based on WGS84(lat, lon)'
+              globalLocationNumber:
+                type: string
+                description: Global location number
+              organisationNumber:
+                type: string
+                description: Norwegian organisation number
+          telephone:
+            type: string
+            description: Telephone number
+          email:
+            type: string
+            description: Email address
+          category:
+            type: string
+            description: Store category
+          profile:
+            type: string
+            description: Store profile
+          storeAssortment:
+            type: string
+            description: Store assortment
+          openingHours:
+            type: object
+            properties:
+              regularHours:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    dayOfTheWeek:
+                      type: string
+                      description: Day of the week
+                    openingTime:
+                      type: string
+                      description: Opening hours
+                    closingTime:
+                      type: string
+                      description: Closing hours
+                    closed:
+                      type: boolean
+                      description: true if the store is closed that day
+              exceptionHours:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    date:
+                      type: string
+                      description: Exception date
+                    openingTime:
+                      type: string
+                      description: Opening hours
+                    closingTime:
+                      type: string
+                      description: Closing hours
+                    message:
+                      type: string
+                      description: ''
+          lastChanged:
+            type: object
+            properties:
+              date:
+                type: string
+                description: Date when the store information was last changed
+              time:
+                type: string
+                description: Time when the store information was last changed
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+security:
+  - apiKeyHeader: [ ]
+  - apiKeyQuery: [ ]

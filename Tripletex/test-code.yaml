@@ -1,0 +1,2523 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Tripletex
+  description: >-
+    Contains a subset of Tripletex APIs.
+
+
+    ### Testing
+
+
+    Dashboard URL:
+    [https://api.tripletex.io](https://api.tripletex.io/page/dashboard?contextId=12619417)
+
+
+    API Host: [https://api.tripletex.io/v2](https://api.tripletex.io/v2)
+
+
+    API Documentation:
+    [https://api.tripletex.io/v2-docs/](https://api.tripletex.io/v2-docs/)
+
+
+    ### Production
+
+
+    Dashboard URL: [https://tripletex.no](https://tripletex.no)
+
+
+    API Host: [https://tripletex.no/v2](https://tripletex.no/v2)
+
+
+    API Documentation:
+    [https://tripletex.no/v2-docs/](https://tripletex.no/v2-docs/#/)
+
+
+    ### Prerequisite
+
+
+    Start by creating a `consumerToken` and `employeeToken` after signup on
+    Tripletex. They are used to generate `sessionToken` with a given validity.
+    This token is used as password across rest of the APIs as part of 'Basic
+    Authentication' while username remain contant as `0`.
+
+
+    ### Additional Documentation
+
+
+    [https://developer.tripletex.no/docs/documentation/getting-started/2-explore/](https://developer.tripletex.no/docs/documentation/getting-started/2-explore/)
+host: api.tripletex.io
+basePath: /v2
+schemes:
+  - https
+consumes: []
+produces:
+  - application/json
+paths:
+  /token/session/{create}: {}
+  /employee/{id}:
+    get:
+      summary: Get employee by ID
+      description: Get employee by ID
+      operationId: GetEmployeeById
+      parameters:
+        - name: id
+          default: '1779798'
+          in: path
+          type: string
+          required: true
+        - name: Accept
+          in: header
+          required: true
+          type: string
+          default: application/json
+          description: Accept
+      responses:
+        '500':
+          description: '500'
+          schema:
+            type: object
+            properties:
+              value:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: id
+                  version:
+                    type: string
+                    description: version
+                  changes:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        employeeId:
+                          type: string
+                          description: employeeId
+                        timestamp:
+                          type: string
+                          description: timestamp
+                        changeType:
+                          type: string
+                          description: changeType
+                    description: changes
+                  url:
+                    type: string
+                    description: url
+                  firstName:
+                    type: string
+                    description: firstName
+                  lastName:
+                    type: string
+                    description: lastName
+                  displayName:
+                    type: string
+                    description: displayName
+                  employeeNumber:
+                    type: string
+                    description: employeeNumber
+                  dateOfBirth:
+                    type: string
+                    description: dateOfBirth
+                  email:
+                    type: string
+                    description: email
+                  phoneNumberMobileCountry:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: id
+                      version:
+                        type: string
+                        description: version
+                      changes:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            employeeId:
+                              type: string
+                              description: employeeId
+                            timestamp:
+                              type: string
+                              description: timestamp
+                            changeType:
+                              type: string
+                              description: changeType
+                        description: changes
+                      url:
+                        type: string
+                        description: url
+                      name:
+                        type: string
+                        description: name
+                      displayName:
+                        type: string
+                        description: displayName
+                      isoAlpha2Code:
+                        type: string
+                        description: isoAlpha2Code
+                      isoAlpha3Code:
+                        type: string
+                        description: isoAlpha3Code
+                      isoNumericCode:
+                        type: string
+                        description: isoNumericCode
+                    description: phoneNumberMobileCountry
+                  phoneNumberMobile:
+                    type: string
+                    description: phoneNumberMobile
+                  phoneNumberHome:
+                    type: string
+                    description: phoneNumberHome
+                  phoneNumberWork:
+                    type: string
+                    description: phoneNumberWork
+                  nationalIdentityNumber:
+                    type: string
+                    description: nationalIdentityNumber
+                  dnumber:
+                    type: string
+                    description: dnumber
+                  internationalId:
+                    type: object
+                    properties:
+                      intAmeldingType:
+                        type: string
+                        description: intAmeldingType
+                      country:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            description: id
+                          version:
+                            type: string
+                            description: version
+                          changes:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                employeeId:
+                                  type: string
+                                  description: employeeId
+                                timestamp:
+                                  type: string
+                                  description: timestamp
+                                changeType:
+                                  type: string
+                                  description: changeType
+                            description: changes
+                          url:
+                            type: string
+                            description: url
+                          name:
+                            type: string
+                            description: name
+                          displayName:
+                            type: string
+                            description: displayName
+                          isoAlpha2Code:
+                            type: string
+                            description: isoAlpha2Code
+                          isoAlpha3Code:
+                            type: string
+                            description: isoAlpha3Code
+                          isoNumericCode:
+                            type: string
+                            description: isoNumericCode
+                        description: country
+                      number:
+                        type: string
+                        description: number
+                    description: internationalId
+                  bankAccountNumber:
+                    type: string
+                    description: bankAccountNumber
+                  iban:
+                    type: string
+                    description: iban
+                  bic:
+                    type: string
+                    description: bic
+                  creditorBankCountryId:
+                    type: string
+                    description: creditorBankCountryId
+                  usesAbroadPayment:
+                    type: string
+                    description: usesAbroadPayment
+                  userType:
+                    type: string
+                    description: userType
+                  allowInformationRegistration:
+                    type: string
+                    description: allowInformationRegistration
+                  isContact:
+                    type: string
+                    description: isContact
+                  comments:
+                    type: string
+                    description: comments
+                  address:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: id
+                      version:
+                        type: string
+                        description: version
+                      changes:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            employeeId:
+                              type: string
+                              description: employeeId
+                            timestamp:
+                              type: string
+                              description: timestamp
+                            changeType:
+                              type: string
+                              description: changeType
+                        description: changes
+                      url:
+                        type: string
+                        description: url
+                      addressLine1:
+                        type: string
+                        description: addressLine1
+                      addressLine2:
+                        type: string
+                        description: addressLine2
+                      postalCode:
+                        type: string
+                        description: postalCode
+                      city:
+                        type: string
+                        description: city
+                      country:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            description: id
+                          version:
+                            type: string
+                            description: version
+                          changes:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                employeeId:
+                                  type: string
+                                  description: employeeId
+                                timestamp:
+                                  type: string
+                                  description: timestamp
+                                changeType:
+                                  type: string
+                                  description: changeType
+                            description: changes
+                          url:
+                            type: string
+                            description: url
+                          name:
+                            type: string
+                            description: name
+                          displayName:
+                            type: string
+                            description: displayName
+                          isoAlpha2Code:
+                            type: string
+                            description: isoAlpha2Code
+                          isoAlpha3Code:
+                            type: string
+                            description: isoAlpha3Code
+                          isoNumericCode:
+                            type: string
+                            description: isoNumericCode
+                        description: country
+                      displayName:
+                        type: string
+                        description: displayName
+                      displayNameInklMatrikkel:
+                        type: string
+                        description: displayNameInklMatrikkel
+                      knr:
+                        type: string
+                        description: knr
+                      gnr:
+                        type: string
+                        description: gnr
+                      bnr:
+                        type: string
+                        description: bnr
+                      fnr:
+                        type: string
+                        description: fnr
+                      snr:
+                        type: string
+                        description: snr
+                      unitNumber:
+                        type: string
+                        description: unitNumber
+                    description: address
+                  department:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: id
+                      version:
+                        type: string
+                        description: version
+                      changes:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            employeeId:
+                              type: string
+                              description: employeeId
+                            timestamp:
+                              type: string
+                              description: timestamp
+                            changeType:
+                              type: string
+                              description: changeType
+                        description: changes
+                      url:
+                        type: string
+                        description: url
+                      name:
+                        type: string
+                        description: name
+                      departmentNumber:
+                        type: string
+                        description: departmentNumber
+                      departmentManager:
+                        type: string
+                        description: departmentManager
+                      displayName:
+                        type: string
+                        description: displayName
+                      isInactive:
+                        type: string
+                        description: isInactive
+                    description: department
+                  employments:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: id
+                        version:
+                          type: string
+                          description: version
+                        changes:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              employeeId:
+                                type: string
+                                description: employeeId
+                              timestamp:
+                                type: string
+                                description: timestamp
+                              changeType:
+                                type: string
+                                description: changeType
+                          description: changes
+                        url:
+                          type: string
+                          description: url
+                        employee:
+                          type: string
+                          description: employee
+                        employmentId:
+                          type: string
+                          description: employmentId
+                        startDate:
+                          type: string
+                          description: startDate
+                        endDate:
+                          type: string
+                          description: endDate
+                        employmentEndReason:
+                          type: string
+                          description: employmentEndReason
+                        division:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              description: id
+                            version:
+                              type: string
+                              description: version
+                            changes:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  employeeId:
+                                    type: string
+                                    description: employeeId
+                                  timestamp:
+                                    type: string
+                                    description: timestamp
+                                  changeType:
+                                    type: string
+                                    description: changeType
+                              description: changes
+                            url:
+                              type: string
+                              description: url
+                            displayName:
+                              type: string
+                              description: displayName
+                            name:
+                              type: string
+                              description: name
+                            startDate:
+                              type: string
+                              description: startDate
+                            endDate:
+                              type: string
+                              description: endDate
+                            organizationNumber:
+                              type: string
+                              description: organizationNumber
+                            municipalityDate:
+                              type: string
+                              description: municipalityDate
+                            municipality:
+                              type: object
+                              properties:
+                                id:
+                                  type: string
+                                  description: id
+                                version:
+                                  type: string
+                                  description: version
+                                changes:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      employeeId:
+                                        type: string
+                                        description: employeeId
+                                      timestamp:
+                                        type: string
+                                        description: timestamp
+                                      changeType:
+                                        type: string
+                                        description: changeType
+                                  description: changes
+                                url:
+                                  type: string
+                                  description: url
+                                number:
+                                  type: string
+                                  description: number
+                                name:
+                                  type: string
+                                  description: name
+                                county:
+                                  type: string
+                                  description: county
+                                payrollTaxZone:
+                                  type: string
+                                  description: payrollTaxZone
+                                displayName:
+                                  type: string
+                                  description: displayName
+                              description: municipality
+                          description: division
+                        lastSalaryChangeDate:
+                          type: string
+                          description: lastSalaryChangeDate
+                        noEmploymentRelationship:
+                          type: string
+                          description: noEmploymentRelationship
+                        isMainEmployer:
+                          type: string
+                          description: isMainEmployer
+                        taxDeductionCode:
+                          type: string
+                          description: taxDeductionCode
+                        employmentDetails:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                description: id
+                              version:
+                                type: string
+                                description: version
+                              changes:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    employeeId:
+                                      type: string
+                                      description: employeeId
+                                    timestamp:
+                                      type: string
+                                      description: timestamp
+                                    changeType:
+                                      type: string
+                                      description: changeType
+                                description: changes
+                              url:
+                                type: string
+                                description: url
+                              employment:
+                                type: string
+                                description: employment
+                              date:
+                                type: string
+                                description: date
+                              employmentType:
+                                type: string
+                                description: employmentType
+                              employmentForm:
+                                type: string
+                                description: employmentForm
+                              maritimeEmployment:
+                                type: object
+                                properties:
+                                  shipRegister:
+                                    type: string
+                                    description: shipRegister
+                                  shipType:
+                                    type: string
+                                    description: shipType
+                                  tradeArea:
+                                    type: string
+                                    description: tradeArea
+                                description: maritimeEmployment
+                              remunerationType:
+                                type: string
+                                description: remunerationType
+                              workingHoursScheme:
+                                type: string
+                                description: workingHoursScheme
+                              shiftDurationHours:
+                                type: string
+                                description: shiftDurationHours
+                              occupationCode:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    description: id
+                                  version:
+                                    type: string
+                                    description: version
+                                  changes:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        employeeId:
+                                          type: string
+                                          description: employeeId
+                                        timestamp:
+                                          type: string
+                                          description: timestamp
+                                        changeType:
+                                          type: string
+                                          description: changeType
+                                    description: changes
+                                  url:
+                                    type: string
+                                    description: url
+                                  nameNO:
+                                    type: string
+                                    description: nameNO
+                                  code:
+                                    type: string
+                                    description: code
+                                description: occupationCode
+                              percentageOfFullTimeEquivalent:
+                                type: string
+                                description: percentageOfFullTimeEquivalent
+                              annualSalary:
+                                type: string
+                                description: annualSalary
+                              hourlyWage:
+                                type: string
+                                description: hourlyWage
+                              payrollTaxMunicipalityId:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    description: id
+                                  version:
+                                    type: string
+                                    description: version
+                                  changes:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        employeeId:
+                                          type: string
+                                          description: employeeId
+                                        timestamp:
+                                          type: string
+                                          description: timestamp
+                                        changeType:
+                                          type: string
+                                          description: changeType
+                                    description: changes
+                                  url:
+                                    type: string
+                                    description: url
+                                  number:
+                                    type: string
+                                    description: number
+                                  name:
+                                    type: string
+                                    description: name
+                                  county:
+                                    type: string
+                                    description: county
+                                  payrollTaxZone:
+                                    type: string
+                                    description: payrollTaxZone
+                                  displayName:
+                                    type: string
+                                    description: displayName
+                                description: payrollTaxMunicipalityId
+                          description: employmentDetails
+                        isRemoveAccessAtEmploymentEnded:
+                          type: string
+                          description: isRemoveAccessAtEmploymentEnded
+                    description: employments
+                  holidayAllowanceEarned:
+                    type: object
+                    properties:
+                      year:
+                        type: string
+                        description: year
+                      amount:
+                        type: string
+                        description: amount
+                      basis:
+                        type: string
+                        description: basis
+                      amountExtraHolidayWeek:
+                        type: string
+                        description: amountExtraHolidayWeek
+                    description: holidayAllowanceEarned
+                  employeeCategory:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: id
+                      version:
+                        type: string
+                        description: version
+                      changes:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            employeeId:
+                              type: string
+                              description: employeeId
+                            timestamp:
+                              type: string
+                              description: timestamp
+                            changeType:
+                              type: string
+                              description: changeType
+                        description: changes
+                      url:
+                        type: string
+                        description: url
+                      displayName:
+                        type: string
+                        description: displayName
+                      name:
+                        type: string
+                        description: name
+                      number:
+                        type: string
+                        description: number
+                      description:
+                        type: string
+                        description: description
+                    description: employeeCategory
+                  isAuthProjectOverviewURL:
+                    type: string
+                    description: isAuthProjectOverviewURL
+                  pictureId:
+                    type: string
+                    description: pictureId
+                  companyId:
+                    type: string
+                    description: companyId
+                description: value
+    put:
+      summary: Update employee
+      description: Update employee
+      operationId: UpdateEmployee
+      parameters:
+        - name: id
+          default: '1779798'
+          in: path
+          type: string
+          required: true
+        - name: Content-Type
+          in: header
+          required: true
+          type: string
+          default: application/json
+          description: Content-Type
+        - name: Accept
+          in: header
+          required: true
+          type: string
+          default: application/json
+          description: Accept
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              id:
+                type: integer
+                format: int32
+                description: id
+              url:
+                type: string
+                description: url
+              firstName:
+                type: string
+                description: firstName
+              lastName:
+                type: string
+                description: lastName
+              displayName:
+                type: string
+                description: displayName
+              employeeNumber:
+                type: string
+                description: employeeNumber
+              dateOfBirth:
+                type: string
+                description: dateOfBirth
+              email:
+                type: string
+                description: email
+              phoneNumberMobileCountry:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int32
+                    description: id
+                  url:
+                    type: string
+                    description: url
+                description: phoneNumberMobileCountry
+              phoneNumberMobile:
+                type: integer
+                format: int32
+                description: phoneNumberMobile
+              phoneNumberHome:
+                type: integer
+                format: int32
+                description: phoneNumberHome
+              phoneNumberWork:
+                type: string
+                description: phoneNumberWork
+              nationalIdentityNumber:
+                type: string
+                description: nationalIdentityNumber
+              dnumber:
+                type: string
+                description: dnumber
+              bankAccountNumber:
+                type: string
+                description: bankAccountNumber
+              iban:
+                type: string
+                description: iban
+              bic:
+                type: string
+                description: bic
+              userType:
+                type: string
+                description: userType
+              allowInformationRegistration:
+                type: boolean
+                description: allowInformationRegistration
+              isContact:
+                type: boolean
+                description: isContact
+              comments:
+                type: string
+                description: comments
+              address:
+                type: string
+                description: address
+              department:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int32
+                    description: id
+                  url:
+                    type: string
+                    description: url
+                description: department
+              employments:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      format: int32
+                      description: id
+                    url:
+                      type: string
+                      description: url
+                description: employments
+              companyId:
+                type: integer
+                format: int32
+                description: companyId
+            default:
+              id: 1779798
+              url: api.tripletex.io/v2/employee/1779798
+              firstName: Ruchi
+              lastName: API Testuser
+              displayName: Ruchi API Testuser
+              employeeNumber: ''
+              dateOfBirth: '1994-12-24'
+              email: ruchi.yadav@avella.no
+              phoneNumberMobileCountry:
+                id: 161
+                url: api.tripletex.io/v2/country/161
+              phoneNumberMobile: 48025222
+              phoneNumberHome: 48025222
+              phoneNumberWork: ''
+              nationalIdentityNumber: ''
+              dnumber: ''
+              bankAccountNumber: ''
+              iban: ''
+              bic: ''
+              userType: STANDARD
+              allowInformationRegistration: true
+              isContact: false
+              comments: ''
+              address: null
+              department:
+                id: 89905
+                url: api.tripletex.io/v2/department/89905
+              employments:
+                - id: 14548
+                  url: api.tripletex.io/v2/employee/employment/14548
+              companyId: 12619417
+          required: true
+      responses:
+        '500':
+          description: '500'
+          schema:
+            type: object
+            properties:
+              value:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: id
+                  version:
+                    type: string
+                    description: version
+                  changes:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        employeeId:
+                          type: string
+                          description: employeeId
+                        timestamp:
+                          type: string
+                          description: timestamp
+                        changeType:
+                          type: string
+                          description: changeType
+                    description: changes
+                  url:
+                    type: string
+                    description: url
+                  firstName:
+                    type: string
+                    description: firstName
+                  lastName:
+                    type: string
+                    description: lastName
+                  displayName:
+                    type: string
+                    description: displayName
+                  employeeNumber:
+                    type: string
+                    description: employeeNumber
+                  dateOfBirth:
+                    type: string
+                    description: dateOfBirth
+                  email:
+                    type: string
+                    description: email
+                  phoneNumberMobileCountry:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: id
+                      version:
+                        type: string
+                        description: version
+                      changes:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            employeeId:
+                              type: string
+                              description: employeeId
+                            timestamp:
+                              type: string
+                              description: timestamp
+                            changeType:
+                              type: string
+                              description: changeType
+                        description: changes
+                      url:
+                        type: string
+                        description: url
+                      name:
+                        type: string
+                        description: name
+                      displayName:
+                        type: string
+                        description: displayName
+                      isoAlpha2Code:
+                        type: string
+                        description: isoAlpha2Code
+                      isoAlpha3Code:
+                        type: string
+                        description: isoAlpha3Code
+                      isoNumericCode:
+                        type: string
+                        description: isoNumericCode
+                    description: phoneNumberMobileCountry
+                  phoneNumberMobile:
+                    type: string
+                    description: phoneNumberMobile
+                  phoneNumberHome:
+                    type: string
+                    description: phoneNumberHome
+                  phoneNumberWork:
+                    type: string
+                    description: phoneNumberWork
+                  nationalIdentityNumber:
+                    type: string
+                    description: nationalIdentityNumber
+                  dnumber:
+                    type: string
+                    description: dnumber
+                  internationalId:
+                    type: object
+                    properties:
+                      intAmeldingType:
+                        type: string
+                        description: intAmeldingType
+                      country:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            description: id
+                          version:
+                            type: string
+                            description: version
+                          changes:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                employeeId:
+                                  type: string
+                                  description: employeeId
+                                timestamp:
+                                  type: string
+                                  description: timestamp
+                                changeType:
+                                  type: string
+                                  description: changeType
+                            description: changes
+                          url:
+                            type: string
+                            description: url
+                          name:
+                            type: string
+                            description: name
+                          displayName:
+                            type: string
+                            description: displayName
+                          isoAlpha2Code:
+                            type: string
+                            description: isoAlpha2Code
+                          isoAlpha3Code:
+                            type: string
+                            description: isoAlpha3Code
+                          isoNumericCode:
+                            type: string
+                            description: isoNumericCode
+                        description: country
+                      number:
+                        type: string
+                        description: number
+                    description: internationalId
+                  bankAccountNumber:
+                    type: string
+                    description: bankAccountNumber
+                  iban:
+                    type: string
+                    description: iban
+                  bic:
+                    type: string
+                    description: bic
+                  creditorBankCountryId:
+                    type: string
+                    description: creditorBankCountryId
+                  usesAbroadPayment:
+                    type: string
+                    description: usesAbroadPayment
+                  userType:
+                    type: string
+                    description: userType
+                  allowInformationRegistration:
+                    type: string
+                    description: allowInformationRegistration
+                  isContact:
+                    type: string
+                    description: isContact
+                  comments:
+                    type: string
+                    description: comments
+                  address:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: id
+                      version:
+                        type: string
+                        description: version
+                      changes:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            employeeId:
+                              type: string
+                              description: employeeId
+                            timestamp:
+                              type: string
+                              description: timestamp
+                            changeType:
+                              type: string
+                              description: changeType
+                        description: changes
+                      url:
+                        type: string
+                        description: url
+                      addressLine1:
+                        type: string
+                        description: addressLine1
+                      addressLine2:
+                        type: string
+                        description: addressLine2
+                      postalCode:
+                        type: string
+                        description: postalCode
+                      city:
+                        type: string
+                        description: city
+                      country:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            description: id
+                          version:
+                            type: string
+                            description: version
+                          changes:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                employeeId:
+                                  type: string
+                                  description: employeeId
+                                timestamp:
+                                  type: string
+                                  description: timestamp
+                                changeType:
+                                  type: string
+                                  description: changeType
+                            description: changes
+                          url:
+                            type: string
+                            description: url
+                          name:
+                            type: string
+                            description: name
+                          displayName:
+                            type: string
+                            description: displayName
+                          isoAlpha2Code:
+                            type: string
+                            description: isoAlpha2Code
+                          isoAlpha3Code:
+                            type: string
+                            description: isoAlpha3Code
+                          isoNumericCode:
+                            type: string
+                            description: isoNumericCode
+                        description: country
+                      displayName:
+                        type: string
+                        description: displayName
+                      displayNameInklMatrikkel:
+                        type: string
+                        description: displayNameInklMatrikkel
+                      knr:
+                        type: string
+                        description: knr
+                      gnr:
+                        type: string
+                        description: gnr
+                      bnr:
+                        type: string
+                        description: bnr
+                      fnr:
+                        type: string
+                        description: fnr
+                      snr:
+                        type: string
+                        description: snr
+                      unitNumber:
+                        type: string
+                        description: unitNumber
+                    description: address
+                  department:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: id
+                      version:
+                        type: string
+                        description: version
+                      changes:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            employeeId:
+                              type: string
+                              description: employeeId
+                            timestamp:
+                              type: string
+                              description: timestamp
+                            changeType:
+                              type: string
+                              description: changeType
+                        description: changes
+                      url:
+                        type: string
+                        description: url
+                      name:
+                        type: string
+                        description: name
+                      departmentNumber:
+                        type: string
+                        description: departmentNumber
+                      departmentManager:
+                        type: string
+                        description: departmentManager
+                      displayName:
+                        type: string
+                        description: displayName
+                      isInactive:
+                        type: string
+                        description: isInactive
+                    description: department
+                  employments:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: id
+                        version:
+                          type: string
+                          description: version
+                        changes:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              employeeId:
+                                type: string
+                                description: employeeId
+                              timestamp:
+                                type: string
+                                description: timestamp
+                              changeType:
+                                type: string
+                                description: changeType
+                          description: changes
+                        url:
+                          type: string
+                          description: url
+                        employee:
+                          type: string
+                          description: employee
+                        employmentId:
+                          type: string
+                          description: employmentId
+                        startDate:
+                          type: string
+                          description: startDate
+                        endDate:
+                          type: string
+                          description: endDate
+                        employmentEndReason:
+                          type: string
+                          description: employmentEndReason
+                        division:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              description: id
+                            version:
+                              type: string
+                              description: version
+                            changes:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  employeeId:
+                                    type: string
+                                    description: employeeId
+                                  timestamp:
+                                    type: string
+                                    description: timestamp
+                                  changeType:
+                                    type: string
+                                    description: changeType
+                              description: changes
+                            url:
+                              type: string
+                              description: url
+                            displayName:
+                              type: string
+                              description: displayName
+                            name:
+                              type: string
+                              description: name
+                            startDate:
+                              type: string
+                              description: startDate
+                            endDate:
+                              type: string
+                              description: endDate
+                            organizationNumber:
+                              type: string
+                              description: organizationNumber
+                            municipalityDate:
+                              type: string
+                              description: municipalityDate
+                            municipality:
+                              type: object
+                              properties:
+                                id:
+                                  type: string
+                                  description: id
+                                version:
+                                  type: string
+                                  description: version
+                                changes:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      employeeId:
+                                        type: string
+                                        description: employeeId
+                                      timestamp:
+                                        type: string
+                                        description: timestamp
+                                      changeType:
+                                        type: string
+                                        description: changeType
+                                  description: changes
+                                url:
+                                  type: string
+                                  description: url
+                                number:
+                                  type: string
+                                  description: number
+                                name:
+                                  type: string
+                                  description: name
+                                county:
+                                  type: string
+                                  description: county
+                                payrollTaxZone:
+                                  type: string
+                                  description: payrollTaxZone
+                                displayName:
+                                  type: string
+                                  description: displayName
+                              description: municipality
+                          description: division
+                        lastSalaryChangeDate:
+                          type: string
+                          description: lastSalaryChangeDate
+                        noEmploymentRelationship:
+                          type: string
+                          description: noEmploymentRelationship
+                        isMainEmployer:
+                          type: string
+                          description: isMainEmployer
+                        taxDeductionCode:
+                          type: string
+                          description: taxDeductionCode
+                        employmentDetails:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                description: id
+                              version:
+                                type: string
+                                description: version
+                              changes:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    employeeId:
+                                      type: string
+                                      description: employeeId
+                                    timestamp:
+                                      type: string
+                                      description: timestamp
+                                    changeType:
+                                      type: string
+                                      description: changeType
+                                description: changes
+                              url:
+                                type: string
+                                description: url
+                              employment:
+                                type: string
+                                description: employment
+                              date:
+                                type: string
+                                description: date
+                              employmentType:
+                                type: string
+                                description: employmentType
+                              employmentForm:
+                                type: string
+                                description: employmentForm
+                              maritimeEmployment:
+                                type: object
+                                properties:
+                                  shipRegister:
+                                    type: string
+                                    description: shipRegister
+                                  shipType:
+                                    type: string
+                                    description: shipType
+                                  tradeArea:
+                                    type: string
+                                    description: tradeArea
+                                description: maritimeEmployment
+                              remunerationType:
+                                type: string
+                                description: remunerationType
+                              workingHoursScheme:
+                                type: string
+                                description: workingHoursScheme
+                              shiftDurationHours:
+                                type: string
+                                description: shiftDurationHours
+                              occupationCode:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    description: id
+                                  version:
+                                    type: string
+                                    description: version
+                                  changes:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        employeeId:
+                                          type: string
+                                          description: employeeId
+                                        timestamp:
+                                          type: string
+                                          description: timestamp
+                                        changeType:
+                                          type: string
+                                          description: changeType
+                                    description: changes
+                                  url:
+                                    type: string
+                                    description: url
+                                  nameNO:
+                                    type: string
+                                    description: nameNO
+                                  code:
+                                    type: string
+                                    description: code
+                                description: occupationCode
+                              percentageOfFullTimeEquivalent:
+                                type: string
+                                description: percentageOfFullTimeEquivalent
+                              annualSalary:
+                                type: string
+                                description: annualSalary
+                              hourlyWage:
+                                type: string
+                                description: hourlyWage
+                              payrollTaxMunicipalityId:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    description: id
+                                  version:
+                                    type: string
+                                    description: version
+                                  changes:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        employeeId:
+                                          type: string
+                                          description: employeeId
+                                        timestamp:
+                                          type: string
+                                          description: timestamp
+                                        changeType:
+                                          type: string
+                                          description: changeType
+                                    description: changes
+                                  url:
+                                    type: string
+                                    description: url
+                                  number:
+                                    type: string
+                                    description: number
+                                  name:
+                                    type: string
+                                    description: name
+                                  county:
+                                    type: string
+                                    description: county
+                                  payrollTaxZone:
+                                    type: string
+                                    description: payrollTaxZone
+                                  displayName:
+                                    type: string
+                                    description: displayName
+                                description: payrollTaxMunicipalityId
+                          description: employmentDetails
+                        isRemoveAccessAtEmploymentEnded:
+                          type: string
+                          description: isRemoveAccessAtEmploymentEnded
+                    description: employments
+                  holidayAllowanceEarned:
+                    type: object
+                    properties:
+                      year:
+                        type: string
+                        description: year
+                      amount:
+                        type: string
+                        description: amount
+                      basis:
+                        type: string
+                        description: basis
+                      amountExtraHolidayWeek:
+                        type: string
+                        description: amountExtraHolidayWeek
+                    description: holidayAllowanceEarned
+                  employeeCategory:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: id
+                      version:
+                        type: string
+                        description: version
+                      changes:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            employeeId:
+                              type: string
+                              description: employeeId
+                            timestamp:
+                              type: string
+                              description: timestamp
+                            changeType:
+                              type: string
+                              description: changeType
+                        description: changes
+                      url:
+                        type: string
+                        description: url
+                      displayName:
+                        type: string
+                        description: displayName
+                      name:
+                        type: string
+                        description: name
+                      number:
+                        type: string
+                        description: number
+                      description:
+                        type: string
+                        description: description
+                    description: employeeCategory
+                  isAuthProjectOverviewURL:
+                    type: string
+                    description: isAuthProjectOverviewURL
+                  pictureId:
+                    type: string
+                    description: pictureId
+                  companyId:
+                    type: string
+                    description: companyId
+                description: value
+  /employee:
+    get:
+      summary: List Employees
+      description: List Employees
+      operationId: ListEmployees
+      parameters:
+        - name: from
+          default: '0'
+          in: query
+          type: string
+          required: true
+        - name: count
+          default: '100'
+          in: query
+          type: string
+          required: true
+        - name: Accept
+          in: header
+          required: true
+          type: string
+          default: application/json
+          description: Accept
+      responses:
+        '500':
+          description: '500'
+          schema:
+            type: object
+            properties: {}
+    post:
+      summary: Create New Employee
+      description: Create New Employee
+      operationId: CreateNewEmployee
+      parameters:
+        - name: Content-Type
+          in: header
+          required: true
+          type: string
+          default: application/json
+          description: Content-Type
+        - name: Accept
+          in: header
+          required: true
+          type: string
+          default: application/json
+          description: Accept
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              firstName:
+                type: string
+                description: firstName
+              lastName:
+                type: string
+                description: lastName
+              displayName:
+                type: string
+                description: displayName
+              employeeNumber:
+                type: string
+                description: employeeNumber
+              dateOfBirth:
+                type: string
+                description: dateOfBirth
+              email:
+                type: string
+                description: email
+              phoneNumberMobileCountry:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int32
+                    description: id
+                  url:
+                    type: string
+                    description: url
+                description: phoneNumberMobileCountry
+              phoneNumberMobile:
+                type: integer
+                format: int32
+                description: phoneNumberMobile
+              phoneNumberHome:
+                type: integer
+                format: int32
+                description: phoneNumberHome
+              phoneNumberWork:
+                type: string
+                description: phoneNumberWork
+              nationalIdentityNumber:
+                type: string
+                description: nationalIdentityNumber
+              dnumber:
+                type: string
+                description: dnumber
+              bankAccountNumber:
+                type: string
+                description: bankAccountNumber
+              iban:
+                type: string
+                description: iban
+              bic:
+                type: string
+                description: bic
+              userType:
+                type: string
+                description: userType
+              allowInformationRegistration:
+                type: boolean
+                description: allowInformationRegistration
+              isContact:
+                type: boolean
+                description: isContact
+              comments:
+                type: string
+                description: comments
+              address:
+                type: string
+                description: address
+              department:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int32
+                    description: id
+                  url:
+                    type: string
+                    description: url
+                description: department
+              companyId:
+                type: integer
+                format: int32
+                description: companyId
+            default:
+              firstName: Ruchi
+              lastName: API Testuser
+              displayName: Ruchi API Testuser
+              employeeNumber: ''
+              dateOfBirth: '1994-12-24'
+              email: ruchi.yadav+4@avella.no
+              phoneNumberMobileCountry:
+                id: 161
+                url: api.tripletex.io/v2/country/161
+              phoneNumberMobile: 48025111
+              phoneNumberHome: 48025111
+              phoneNumberWork: ''
+              nationalIdentityNumber: ''
+              dnumber: ''
+              bankAccountNumber: ''
+              iban: ''
+              bic: ''
+              userType: STANDARD
+              allowInformationRegistration: true
+              isContact: false
+              comments: ''
+              address: null
+              department:
+                id: 89905
+                url: api.tripletex.io/v2/department/89905
+              companyId: 12619417
+          required: true
+      responses:
+        '500':
+          description: '500'
+          schema:
+            type: object
+            properties:
+              value:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: id
+                  version:
+                    type: string
+                    description: version
+                  changes:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        employeeId:
+                          type: string
+                          description: employeeId
+                        timestamp:
+                          type: string
+                          description: timestamp
+                        changeType:
+                          type: string
+                          description: changeType
+                    description: changes
+                  url:
+                    type: string
+                    description: url
+                  firstName:
+                    type: string
+                    description: firstName
+                  lastName:
+                    type: string
+                    description: lastName
+                  displayName:
+                    type: string
+                    description: displayName
+                  employeeNumber:
+                    type: string
+                    description: employeeNumber
+                  dateOfBirth:
+                    type: string
+                    description: dateOfBirth
+                  email:
+                    type: string
+                    description: email
+                  phoneNumberMobileCountry:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: id
+                      version:
+                        type: string
+                        description: version
+                      changes:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            employeeId:
+                              type: string
+                              description: employeeId
+                            timestamp:
+                              type: string
+                              description: timestamp
+                            changeType:
+                              type: string
+                              description: changeType
+                        description: changes
+                      url:
+                        type: string
+                        description: url
+                      name:
+                        type: string
+                        description: name
+                      displayName:
+                        type: string
+                        description: displayName
+                      isoAlpha2Code:
+                        type: string
+                        description: isoAlpha2Code
+                      isoAlpha3Code:
+                        type: string
+                        description: isoAlpha3Code
+                      isoNumericCode:
+                        type: string
+                        description: isoNumericCode
+                    description: phoneNumberMobileCountry
+                  phoneNumberMobile:
+                    type: string
+                    description: phoneNumberMobile
+                  phoneNumberHome:
+                    type: string
+                    description: phoneNumberHome
+                  phoneNumberWork:
+                    type: string
+                    description: phoneNumberWork
+                  nationalIdentityNumber:
+                    type: string
+                    description: nationalIdentityNumber
+                  dnumber:
+                    type: string
+                    description: dnumber
+                  internationalId:
+                    type: object
+                    properties:
+                      intAmeldingType:
+                        type: string
+                        description: intAmeldingType
+                      country:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            description: id
+                          version:
+                            type: string
+                            description: version
+                          changes:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                employeeId:
+                                  type: string
+                                  description: employeeId
+                                timestamp:
+                                  type: string
+                                  description: timestamp
+                                changeType:
+                                  type: string
+                                  description: changeType
+                            description: changes
+                          url:
+                            type: string
+                            description: url
+                          name:
+                            type: string
+                            description: name
+                          displayName:
+                            type: string
+                            description: displayName
+                          isoAlpha2Code:
+                            type: string
+                            description: isoAlpha2Code
+                          isoAlpha3Code:
+                            type: string
+                            description: isoAlpha3Code
+                          isoNumericCode:
+                            type: string
+                            description: isoNumericCode
+                        description: country
+                      number:
+                        type: string
+                        description: number
+                    description: internationalId
+                  bankAccountNumber:
+                    type: string
+                    description: bankAccountNumber
+                  iban:
+                    type: string
+                    description: iban
+                  bic:
+                    type: string
+                    description: bic
+                  creditorBankCountryId:
+                    type: string
+                    description: creditorBankCountryId
+                  usesAbroadPayment:
+                    type: string
+                    description: usesAbroadPayment
+                  userType:
+                    type: string
+                    description: userType
+                  allowInformationRegistration:
+                    type: string
+                    description: allowInformationRegistration
+                  isContact:
+                    type: string
+                    description: isContact
+                  comments:
+                    type: string
+                    description: comments
+                  address:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: id
+                      version:
+                        type: string
+                        description: version
+                      changes:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            employeeId:
+                              type: string
+                              description: employeeId
+                            timestamp:
+                              type: string
+                              description: timestamp
+                            changeType:
+                              type: string
+                              description: changeType
+                        description: changes
+                      url:
+                        type: string
+                        description: url
+                      addressLine1:
+                        type: string
+                        description: addressLine1
+                      addressLine2:
+                        type: string
+                        description: addressLine2
+                      postalCode:
+                        type: string
+                        description: postalCode
+                      city:
+                        type: string
+                        description: city
+                      country:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            description: id
+                          version:
+                            type: string
+                            description: version
+                          changes:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                employeeId:
+                                  type: string
+                                  description: employeeId
+                                timestamp:
+                                  type: string
+                                  description: timestamp
+                                changeType:
+                                  type: string
+                                  description: changeType
+                            description: changes
+                          url:
+                            type: string
+                            description: url
+                          name:
+                            type: string
+                            description: name
+                          displayName:
+                            type: string
+                            description: displayName
+                          isoAlpha2Code:
+                            type: string
+                            description: isoAlpha2Code
+                          isoAlpha3Code:
+                            type: string
+                            description: isoAlpha3Code
+                          isoNumericCode:
+                            type: string
+                            description: isoNumericCode
+                        description: country
+                      displayName:
+                        type: string
+                        description: displayName
+                      displayNameInklMatrikkel:
+                        type: string
+                        description: displayNameInklMatrikkel
+                      knr:
+                        type: string
+                        description: knr
+                      gnr:
+                        type: string
+                        description: gnr
+                      bnr:
+                        type: string
+                        description: bnr
+                      fnr:
+                        type: string
+                        description: fnr
+                      snr:
+                        type: string
+                        description: snr
+                      unitNumber:
+                        type: string
+                        description: unitNumber
+                    description: address
+                  department:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: id
+                      version:
+                        type: string
+                        description: version
+                      changes:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            employeeId:
+                              type: string
+                              description: employeeId
+                            timestamp:
+                              type: string
+                              description: timestamp
+                            changeType:
+                              type: string
+                              description: changeType
+                        description: changes
+                      url:
+                        type: string
+                        description: url
+                      name:
+                        type: string
+                        description: name
+                      departmentNumber:
+                        type: string
+                        description: departmentNumber
+                      departmentManager:
+                        type: string
+                        description: departmentManager
+                      displayName:
+                        type: string
+                        description: displayName
+                      isInactive:
+                        type: string
+                        description: isInactive
+                    description: department
+                  employments:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: id
+                        version:
+                          type: string
+                          description: version
+                        changes:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              employeeId:
+                                type: string
+                                description: employeeId
+                              timestamp:
+                                type: string
+                                description: timestamp
+                              changeType:
+                                type: string
+                                description: changeType
+                          description: changes
+                        url:
+                          type: string
+                          description: url
+                        employee:
+                          type: string
+                          description: employee
+                        employmentId:
+                          type: string
+                          description: employmentId
+                        startDate:
+                          type: string
+                          description: startDate
+                        endDate:
+                          type: string
+                          description: endDate
+                        employmentEndReason:
+                          type: string
+                          description: employmentEndReason
+                        division:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              description: id
+                            version:
+                              type: string
+                              description: version
+                            changes:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  employeeId:
+                                    type: string
+                                    description: employeeId
+                                  timestamp:
+                                    type: string
+                                    description: timestamp
+                                  changeType:
+                                    type: string
+                                    description: changeType
+                              description: changes
+                            url:
+                              type: string
+                              description: url
+                            displayName:
+                              type: string
+                              description: displayName
+                            name:
+                              type: string
+                              description: name
+                            startDate:
+                              type: string
+                              description: startDate
+                            endDate:
+                              type: string
+                              description: endDate
+                            organizationNumber:
+                              type: string
+                              description: organizationNumber
+                            municipalityDate:
+                              type: string
+                              description: municipalityDate
+                            municipality:
+                              type: object
+                              properties:
+                                id:
+                                  type: string
+                                  description: id
+                                version:
+                                  type: string
+                                  description: version
+                                changes:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      employeeId:
+                                        type: string
+                                        description: employeeId
+                                      timestamp:
+                                        type: string
+                                        description: timestamp
+                                      changeType:
+                                        type: string
+                                        description: changeType
+                                  description: changes
+                                url:
+                                  type: string
+                                  description: url
+                                number:
+                                  type: string
+                                  description: number
+                                name:
+                                  type: string
+                                  description: name
+                                county:
+                                  type: string
+                                  description: county
+                                payrollTaxZone:
+                                  type: string
+                                  description: payrollTaxZone
+                                displayName:
+                                  type: string
+                                  description: displayName
+                              description: municipality
+                          description: division
+                        lastSalaryChangeDate:
+                          type: string
+                          description: lastSalaryChangeDate
+                        noEmploymentRelationship:
+                          type: string
+                          description: noEmploymentRelationship
+                        isMainEmployer:
+                          type: string
+                          description: isMainEmployer
+                        taxDeductionCode:
+                          type: string
+                          description: taxDeductionCode
+                        employmentDetails:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                description: id
+                              version:
+                                type: string
+                                description: version
+                              changes:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    employeeId:
+                                      type: string
+                                      description: employeeId
+                                    timestamp:
+                                      type: string
+                                      description: timestamp
+                                    changeType:
+                                      type: string
+                                      description: changeType
+                                description: changes
+                              url:
+                                type: string
+                                description: url
+                              employment:
+                                type: string
+                                description: employment
+                              date:
+                                type: string
+                                description: date
+                              employmentType:
+                                type: string
+                                description: employmentType
+                              employmentForm:
+                                type: string
+                                description: employmentForm
+                              maritimeEmployment:
+                                type: object
+                                properties:
+                                  shipRegister:
+                                    type: string
+                                    description: shipRegister
+                                  shipType:
+                                    type: string
+                                    description: shipType
+                                  tradeArea:
+                                    type: string
+                                    description: tradeArea
+                                description: maritimeEmployment
+                              remunerationType:
+                                type: string
+                                description: remunerationType
+                              workingHoursScheme:
+                                type: string
+                                description: workingHoursScheme
+                              shiftDurationHours:
+                                type: string
+                                description: shiftDurationHours
+                              occupationCode:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    description: id
+                                  version:
+                                    type: string
+                                    description: version
+                                  changes:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        employeeId:
+                                          type: string
+                                          description: employeeId
+                                        timestamp:
+                                          type: string
+                                          description: timestamp
+                                        changeType:
+                                          type: string
+                                          description: changeType
+                                    description: changes
+                                  url:
+                                    type: string
+                                    description: url
+                                  nameNO:
+                                    type: string
+                                    description: nameNO
+                                  code:
+                                    type: string
+                                    description: code
+                                description: occupationCode
+                              percentageOfFullTimeEquivalent:
+                                type: string
+                                description: percentageOfFullTimeEquivalent
+                              annualSalary:
+                                type: string
+                                description: annualSalary
+                              hourlyWage:
+                                type: string
+                                description: hourlyWage
+                              payrollTaxMunicipalityId:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    description: id
+                                  version:
+                                    type: string
+                                    description: version
+                                  changes:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        employeeId:
+                                          type: string
+                                          description: employeeId
+                                        timestamp:
+                                          type: string
+                                          description: timestamp
+                                        changeType:
+                                          type: string
+                                          description: changeType
+                                    description: changes
+                                  url:
+                                    type: string
+                                    description: url
+                                  number:
+                                    type: string
+                                    description: number
+                                  name:
+                                    type: string
+                                    description: name
+                                  county:
+                                    type: string
+                                    description: county
+                                  payrollTaxZone:
+                                    type: string
+                                    description: payrollTaxZone
+                                  displayName:
+                                    type: string
+                                    description: displayName
+                                description: payrollTaxMunicipalityId
+                          description: employmentDetails
+                        isRemoveAccessAtEmploymentEnded:
+                          type: string
+                          description: isRemoveAccessAtEmploymentEnded
+                    description: employments
+                  holidayAllowanceEarned:
+                    type: object
+                    properties:
+                      year:
+                        type: string
+                        description: year
+                      amount:
+                        type: string
+                        description: amount
+                      basis:
+                        type: string
+                        description: basis
+                      amountExtraHolidayWeek:
+                        type: string
+                        description: amountExtraHolidayWeek
+                    description: holidayAllowanceEarned
+                  employeeCategory:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: id
+                      version:
+                        type: string
+                        description: version
+                      changes:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            employeeId:
+                              type: string
+                              description: employeeId
+                            timestamp:
+                              type: string
+                              description: timestamp
+                            changeType:
+                              type: string
+                              description: changeType
+                        description: changes
+                      url:
+                        type: string
+                        description: url
+                      displayName:
+                        type: string
+                        description: displayName
+                      name:
+                        type: string
+                        description: name
+                      number:
+                        type: string
+                        description: number
+                      description:
+                        type: string
+                        description: description
+                    description: employeeCategory
+                  isAuthProjectOverviewURL:
+                    type: string
+                    description: isAuthProjectOverviewURL
+                  pictureId:
+                    type: string
+                    description: pictureId
+                  companyId:
+                    type: string
+                    description: companyId
+                description: value
+definitions: {}
+parameters: {}
+responses: {}
+securityDefinitions:
+  basic-auth:
+    type: basic
+security:
+  - basic-auth: []
+tags: []

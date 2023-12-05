@@ -1,0 +1,485 @@
+openapi: 3.0.1
+info:
+  title: Tripletex API
+  description: >
+    ## Overview - Partial resource updating is done using the `PUT` method with
+    optional fields instead of the `PATCH` method. - **Actions** or **commands**
+    are represented in our RESTful path with a prefixed `:`. Example:
+    `/v2/hours/123/:approve`. - **Summaries** or **aggregated** results are
+    represented in our RESTful path with a prefixed `>`. Example:
+    `/v2/hours/>thisWeeksBillables`. - **Request ID** is a key found in all
+    responses in the header with the name `x-tlx-request-id`. For validation and
+    error responses it is also in the response body. If additional log
+    information is absolutely necessary, our support division can locate the key
+    value. - **version** This is a revision number found on all persisted
+    resources. If included, it will prevent your PUT/POST from overriding any
+    updates to the resource since your GET. - **Date** follows the
+    **[ISO8601](https://en.wikipedia.org/wiki/ISO_8601)** standard, meaning the
+    format `YYYY-MM-DD`. - **DateTime** follows the
+    **[ISO8601](https://en.wikipedia.org/wiki/ISO_8601)** standard, meaning the
+    format `YYYY-MM-DDThh:mm:ss`. - **Searching** is done by entering values in
+    the optional fields for each API call. The values fall into the following
+    categories: range, in, exact and like. - **Missing fields** or even **no
+    response data** can occur because result objects and fields are filtered on
+    authorization.
+
+    ## Authentication - **Tokens:** The Tripletex API uses 3 different tokens
+      - **consumerToken** is a token provided to the consumer by Tripletex after the API 2.0 registration is completed.
+      - **employeeToken** is a token created by an administrator in your Tripletex account via the user settings and the tab "API access". Each employee token must be given a set of entitlements. [Read more here.](https://tripletex.no/execute/docViewer?articleId=1505&languageId=0)
+      - **sessionToken** is the token from `/token/session/:create` which requires a consumerToken and an employeeToken created with the same consumer token, but not an authentication header.
+    - **Authentication** is done via [Basic access
+    authentication](https://en.wikipedia.org/wiki/Basic_access_authentication)
+      - **username** is used to specify what company to access.
+        - `0` or blank means the company of the employee.
+        - Any other value means accountant clients. Use `/company/>withLoginAccess` to get a list of those.
+      - **password** is the **sessionToken**.
+      - If you need to create the header yourself use `Authorization: Basic <encoded token>` where `encoded token` is the string `<target company id or 0>:<your session token>` Base64 encoded.
+  contact:
+    name: tripletex-api2 on GitHub
+    url: https://github.com/Tripletex/tripletex-api2
+  version: 2.70.44
+servers:
+  - url: https://tripletex.no/v2
+tags:
+  - name: activity
+  - name: addon
+  - name: deliveryAddress
+  - name: address
+  - name: internalautoPayIncomingFileSimulator
+  - name: internalscheduling
+  - name: internalsystemMessage
+  - name: altinninstance
+  - name: integrationfactoringaprila
+  - name: asset
+  - name: internalauth
+  - name: auth/internal
+  - name: balanceSheet
+  - name: balanceSheet2
+  - name: bank
+  - name: bankadvice
+  - name: bank/advice
+  - name: bankagreements
+  - name: bankonboarding
+  - name: bankreconciliation
+  - name: bank/reconciliation
+  - name: bankreconciliationfileIdsForIncomingPayments
+  - name: bankreconciliationmatch
+  - name: bank/reconciliation/match
+  - name: bankreconciliationmatchescounter
+  - name: bankreconciliationpaymentType
+  - name: bank/reconciliation/paymentType
+  - name: bankreconciliationsettings
+  - name: bank/reconciliation/settings
+  - name: banksettings
+  - name: bankstatement
+  - name: bank/statement
+  - name: bankstatementbalanceestimation
+  - name: bankstatementtransaction
+  - name: bank/statement/transaction
+  - name: upsaleMetric
+  - name: bringCredentials
+  - name: checkout
+  - name: accountantClientAccess
+  - name: accountingOffice
+  - name: accountantClientAccesstemplate
+  - name: clientTasks
+  - name: todoList
+  - name: todoListComment
+  - name: exceptiontest
+  - name: apiConsumer
+  - name: tokenconsumer
+  - name: token/consumer
+  - name: tokenemployee
+  - name: token/employee
+  - name: tokenlogin
+  - name: loginconnect
+  - name: tokensession
+  - name: token/session
+  - name: company
+  - name: companysettingsaltinn
+  - name: company/altinn
+  - name: companybrreg
+  - name: companymodules
+  - name: companysalesmodules
+  - name: company/salesmodules
+  - name: companyRepresentative
+  - name: contact
+  - name: country
+  - name: currency
+  - name: customer
+  - name: customercategory
+  - name: customer/category
+  - name: dashboard
+  - name: department
+  - name: distributionKey
+  - name: division
+  - name: document
+  - name: documentArchive
+  - name: employee
+  - name: employeecategory
+  - name: employee/category
+  - name: employeeemployment
+  - name: employee/employment
+  - name: employeeemploymentdetails
+  - name: employee/employment/details
+  - name: employeeemploymentemploymentType
+  - name: employee/employment/employmentType
+  - name: employeeemploymentleaveOfAbsence
+  - name: employee/employment/leaveOfAbsence
+  - name: employeeemploymentleaveOfAbsenceType
+  - name: employee/employment/leaveOfAbsenceType
+  - name: employeeemploymentoccupationCode
+  - name: employee/employment/occupationCode
+  - name: employeeemploymentremunerationType
+  - name: employee/employment/remunerationType
+  - name: employeeemploymentworkingHoursScheme
+  - name: employee/employment/workingHoursScheme
+  - name: employeehourlyCostAndRate
+  - name: employee/hourlyCostAndRate
+  - name: employeelogininfo
+  - name: employee/logininfo
+  - name: employeenextOfKin
+  - name: employee/nextOfKin
+  - name: employeepreferences
+  - name: employee/preferences
+  - name: employeestandardTime
+  - name: employee/standardTime
+  - name: enhetsregisteret
+  - name: employeeentitlement
+  - name: employee/entitlement
+  - name: event
+  - name: eventexecute
+  - name: eventtrigger
+  - name: eventnotification
+  - name: eventsubscription
+  - name: event/subscription
+  - name: feedback
+  - name: fundingpartner
+  - name: fundingpartnerqualify
+  - name: idporten
+  - name: idportenloginstatus
+  - name: integrationautopaymessages
+  - name: bankpayment
+  - name: integrationlinkmobilityreport
+  - name: integrationpg2callback
+  - name: integrationsendgridparse
+  - name: integrationsendgridevent
+  - name: bankztlpaymentinternal
+  - name: inventory
+  - name: inventoryinventories
+  - name: inventory/inventories
+  - name: inventorylocation
+  - name: inventory/location
+  - name: inventorystocktaking
+  - name: inventory/stocktaking
+  - name: inventorystocktakingproductline
+  - name: inventory/stocktaking/productline
+  - name: invoice
+  - name: invoiceRemark
+  - name: integrationmaventastatus
+  - name: invoicepaymentType
+  - name: invoice/paymentType
+  - name: invoicedetails
+  - name: invoice/details
+  - name: customerinvoiceSendType
+  - name: invoicesettings
+  - name: internalinvoiceOverview
+  - name: killSwitch
+  - name: ledger
+  - name: ledgeraccount
+  - name: ledger/account
+  - name: ledgeraccountingPeriod
+  - name: ledger/accountingPeriod
+  - name: ledgerannualAccount
+  - name: ledger/annualAccount
+  - name: ledgercloseGroup
+  - name: ledger/closeGroup
+  - name: ledgerpaymentTypeOut
+  - name: ledger/paymentTypeOut
+  - name: ledgerposting
+  - name: ledger/posting
+  - name: ledgerpostinghistorical
+  - name: ledgervatType
+  - name: ledger/vatType
+  - name: ledgervoucheropeningBalance
+  - name: ledger/voucher/openingBalance
+  - name: ledgervoucher
+  - name: ledger/voucher
+  - name: ledgervoucherhistorical
+  - name: ledger/voucher/historical
+  - name: ledgervoucherinternal
+  - name: ledgervoucherType
+  - name: ledger/voucherType
+  - name: license
+  - name: lookup
+  - name: download-app
+  - name: mobileapp
+  - name: municipality
+  - name: subscription
+  - name: openid
+  - name: order
+  - name: orderoffer
+  - name: orderorderGroup
+  - name: order/orderGroup
+  - name: orderorderline
+  - name: order/orderline
+  - name: stockoutgoing
+  - name: paymentTypeAutomation
+  - name: bankpaymentWidget
+  - name: pilotFeature
+  - name: productexternal
+  - name: product/external
+  - name: product
+  - name: productsupplierProduct
+  - name: product/supplierProduct
+  - name: productdiscountGroup
+  - name: product/discountGroup
+  - name: productinventoryLocation
+  - name: product/inventoryLocation
+  - name: productlogisticsSettings
+  - name: product/logisticsSettings
+  - name: productgroup
+  - name: product/group
+  - name: productgroupRelation
+  - name: product/groupRelation
+  - name: productproductPrice
+  - name: product/productPrice
+  - name: productsettings
+  - name: productImport
+  - name: productImportFields
+  - name: productImportimportHeaders
+  - name: productImportFieldsRelation
+  - name: productImportpotentialProduct
+  - name: productunit
+  - name: product/unit
+  - name: productunitmaster
+  - name: product/unit/master
+  - name: project
+  - name: project/import
+  - name: projectaccess
+  - name: projectcategory
+  - name: project/category
+  - name: projectonboarding
+  - name: projectorderline
+  - name: project/orderline
+  - name: projectoverview
+  - name: projectparticipant
+  - name: project/participant
+  - name: project{id}period
+  - name: project/period
+  - name: projectprojectActivity
+  - name: project/projectActivity
+  - name: projectcontrolForm
+  - name: project/controlForm
+  - name: projectcontrolFormType
+  - name: project/controlFormType
+  - name: projecthourlyRates
+  - name: project/hourlyRates
+  - name: projecthourlyRatesprojectSpecificRates
+  - name: project/hourlyRates/projectSpecificRates
+  - name: projectresourcePlanBudget
+  - name: project/resourceplan
+  - name: projectsettings
+  - name: project/settings
+  - name: projecttask
+  - name: project/task
+  - name: projecttemplate
+  - name: project/template
+  - name: crmprospect
+  - name: crm/prospect
+  - name: pickupPoint
+  - name: purchaseOrder
+  - name: purchaseOrderAddress
+  - name: purchaseOrderinternal
+  - name: transportType
+  - name: purchaseOrderdeviation
+  - name: purchaseOrder/deviation
+  - name: purchaseOrdergoodsReceipt
+  - name: purchaseOrder/goodsReceipt
+  - name: purchaseOrdergoodsReceiptLine
+  - name: purchaseOrder/goodsReceiptLine
+  - name: purchaseOrderpurchaseOrderIncomingInvoiceRelation
+  - name: purchaseOrder/purchaseOrderIncomingInvoiceRelation
+  - name: purchaseOrderorderline
+  - name: purchaseOrder/orderline
+  - name: reminder
+  - name: report
+  - name: reportauthorization
+  - name: reportreeldomain
+  - name: reportreelfunction
+  - name: reportresult
+  - name: reportsystem
+  - name: resourceMessages
+  - name: internalresourcePlan2permissions
+  - name: internalresourcePlan2employee
+  - name: internalresourcePlan2employeejob
+  - name: internalresourcePlan2modaljobs
+  - name: internalresourcePlan2project
+  - name: internalresourcePlan2projectjob
+  - name: internalresourcePlan2totalTime
+  - name: resultbudget
+  - name: saft
+  - name: salarytype
+  - name: salary/type
+  - name: salarytskinternalmeta
+  - name: tsksalaryv2createSalaryEmployee
+  - name: tsksalaryv2employee
+  - name: tsksalaryv2payment
+  - name: tsksalaryv2settings
+  - name: tsksalaryv2specification
+  - name: tsksalaryv2specificationsupplement
+  - name: tsksalaryv2previousSalary
+  - name: tsksalaryv2transaction
+  - name: tsksalaryv2travelExpense
+  - name: tsksalaryv2type
+  - name: tsksalaryv2voucher
+  - name: salarytskinternaltaxcard
+  - name: salarytskinternalphonePrefixCountry
+  - name: salarytskinternalreportingCompany
+  - name: salarytskinternaltaxcardcontact
+  - name: salarycompilation
+  - name: salary/compilation
+  - name: salarypayslip
+  - name: salary/payslip
+  - name: salarysettings
+  - name: salary/settings
+  - name: salarysettingsholiday
+  - name: salary/settings/holiday
+  - name: salarysettingspensionScheme
+  - name: salary/settings/pensionScheme
+  - name: salarysettingsstandardTime
+  - name: salary/settings/standardTime
+  - name: salaryspecification
+  - name: salarytransaction
+  - name: salary/transaction
+  - name: signatureCombination
+  - name: snowplow
+  - name: sse
+  - name: storebrandonboarding
+  - name: storebrandonboardingqualify
+  - name: supplier
+  - name: supplierInvoice
+  - name: voucherApprovalListElement
+  - name: supplierInvoiceAutomation
+  - name: supportAccessrequestread
+  - name: testaccountdata
+  - name: timesheetallocated
+  - name: timesheet/allocated
+  - name: timesheetcompanyHoliday
+  - name: timesheet/companyHoliday
+  - name: timesheetentry
+  - name: timesheet/entry
+  - name: timesheetmonth
+  - name: timesheet/month
+  - name: timesheetsalaryProjectTypeSpecification
+  - name: timesheet/salaryProjectTypeSpecification
+  - name: timesheetsalaryTypeSpecification
+  - name: timesheet/salaryTypeSpecification
+  - name: timesheetsettings
+  - name: timesheet/settings
+  - name: timesheettimeClock
+  - name: timesheet/timeClock
+  - name: timesheetweek
+  - name: timesheet/week
+  - name: travelExpenseaccommodationAllowance
+  - name: travelExpense/accommodationAllowance
+  - name: travelExpensecost
+  - name: travelExpense/cost
+  - name: travelExpensecostParticipant
+  - name: travelExpense/costParticipant
+  - name: travelExpensedrivingStop
+  - name: travelExpense/drivingStop
+  - name: travelExpensemileageAllowance
+  - name: travelExpense/mileageAllowance
+  - name: travelExpensepassenger
+  - name: travelExpense/passenger
+  - name: travelExpenseperDiemCompensation
+  - name: travelExpense/perDiemCompensation
+  - name: travelExpense
+  - name: travelExpenserate
+  - name: travelExpense/rate
+  - name: travelExpenserateCategory
+  - name: travelExpense/rateCategory
+  - name: travelExpenserateCategoryGroup
+  - name: travelExpense/rateCategoryGroup
+  - name: travelExpensecostCategory
+  - name: travelExpense/costCategory
+  - name: travelExpensepaymentType
+  - name: travelExpense/paymentType
+  - name: travelExpensesettings
+  - name: travelExpense/settings
+  - name: travelExpensezone
+  - name: tripletexAccount
+  - name: tripletexAccountPrices
+  - name: tripletexAccountsalesForceAccountInfo
+  - name: tripletexAccountsalesForceAccountantConnection
+  - name: tripletexAccountsalesForceEmployeeRole
+  - name: tripletexAccountsalesForceTripletexSalesModulePurchase
+  - name: tripletexAccountsalesForceUser
+  - name: tripletexAccountsalesForceUserOverview
+  - name: tripletexDashboard
+  - name: tripletexDashboardbankingSummary
+  - name: tripletexDashboardgetStartedSummary
+  - name: tripletexDashboardincomeAndCostSummary
+  - name: tripletexDashboardinvoiceSummary
+  - name: tripletexDashboardreminder
+  - name: tripletexDashboardsalarySummary
+  - name: tripletexDashboardtask
+  - name: tripletexDashboardtrial
+  - name: tripletexDashboardvoucherSummary
+  - name: vatReturns
+  - name: vatReturnsvalidateCreate
+  - name: vatReturnscomment
+  - name: vismaconnectonboard
+  - name: vismaconnectwebhook
+  - name: comment
+  - name: voucherInboxsendToArchive
+  - name: voucherInbox
+  - name: wootric
+  - name: voucherMessage
+  - name: voucherStatus
+  - name: banner
+  - name: webcallout
+  - name: webclient
+  - name: internalfavorites
+  - name: favorites/internal
+  - name: internalpilotFeatureuser
+  - name: internalmenu
+  - name: internalnews
+  - name: optionspage
+  - name: internalcompany-chooser
+  - name: internalprofile
+  - name: internalhelpcenter
+  - name: internalsearch
+  - name: internalsegmentation
+  - name: segmentation/internal
+  - name: internalsupport
+  - name: internalzendesk-chat
+  - name: ztlaccount
+  - name: ztlconsent
+  - name: ztlonboardingpage
+  - name: ztlonboarding
+  - name: ztlsettings
+paths:
+  /activity/{id}:
+    get:
+      tags:
+        - activity
+      summary: Find activity by ID.
+      operationId: Activity_get
+      parameters:
+        - name: id
+          in: path
+          description: Element ID
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: fields
+          in: query
+          description: Fields filter pattern
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation

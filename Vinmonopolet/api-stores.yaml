@@ -1,0 +1,241 @@
+openapi: 3.0.1
+info:
+  title: stores
+  description: Store operations
+  version: v0
+servers:
+  - url: https://apis.vinmonopolet.no/stores/v0
+paths:
+  /details:
+    get:
+      summary: Get store details
+      description: Returns details about stores in Vinmonopolet
+      operationId: GET_DETAILS
+      parameters:
+        - name: storeId
+          in: query
+          description: Returns details of the Store with the given number
+          schema:
+            type: integer
+        - name: storeNameContains
+          in: query
+          description: Returns details of Stores whose name contains the provided string
+          schema:
+            type: string
+        - name: changedSince
+          in: query
+          description: Returns details of Stores which have been updated since the supplied date (yyyy-MM-dd)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GET_DETAILS_Response'
+              example:
+                - storeId: string
+                  storeName: string
+                  status: string
+                  address:
+                    street: string
+                    postalCode: string
+                    city: string
+                    gpsCoord: string
+                    globalLocationNumber: string
+                    organisationNumber: string
+                  telephone: string
+                  email: string
+                  category: string
+                  profile: string
+                  storeAssortment: string
+                  openingHours:
+                    regularHours:
+                      - dayOfTheWeek: string
+                        openingTime: string
+                        closingTime: string
+                        closed: true
+                    exceptionHours:
+                      - date: string
+                        openingTime: string
+                        closingTime: string
+                        message: string
+                  lastChanged:
+                    date: string
+                    time: string
+        '400':
+          description: Bad Request (wrong parameters/values supplied)
+        '500':
+          description: Error
+    head:
+      summary: Get store details (no response body)
+      description: 'Returns details about stores in Vinmonopolet (Same as Get method, but no response body, only header info)'
+      operationId: 5e9d54726fb93452043dd0dc
+      parameters:
+        - name: storeId
+          in: query
+          description: Returns details of the Store with the given number
+          schema:
+            type: integer
+        - name: storeNameContains
+          in: query
+          description: Returns details of Stores whose name contains the provided string
+          schema:
+            type: string
+        - name: changedSince
+          in: query
+          description: Returns details of Stores which have been updated since the supplied date (yyyy-MM-dd)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GET_DETAILS_Response'
+              example:
+                - storeId: string
+                  storeName: string
+                  status: string
+                  address:
+                    street: string
+                    postalCode: string
+                    city: string
+                    gpsCoord: string
+                    globalLocationNumber: string
+                    organisationNumber: string
+                  telephone: string
+                  email: string
+                  category: string
+                  profile: string
+                  storeAssortment: string
+                  openingHours:
+                    regularHours:
+                      - dayOfTheWeek: string
+                        openingTime: string
+                        closingTime: string
+                        closed: true
+                    exceptionHours:
+                      - date: string
+                        openingTime: string
+                        closingTime: string
+                        message: string
+                  lastChanged:
+                    date: string
+                    time: string
+        '400':
+          description: Bad Request (wrong parameters/values supplied)
+        '500':
+          description: Error
+components:
+  schemas:
+    GET_DETAILS_Response:
+      type: array
+      items:
+        type: object
+        properties:
+          storeId:
+            type: string
+            description: Store number
+          storeName:
+            type: string
+            description: Store name
+          status:
+            type: string
+            description: Status (Open/Closed/Temporarily closed/To be opened)
+          address:
+            type: object
+            properties:
+              street:
+                type: string
+                description: Street and number
+              postalCode:
+                type: string
+                description: Postal Code
+              city:
+                type: string
+                description: City
+              gpsCoord:
+                type: string
+                description: 'GPS coordinates based on WGS84(lat, lon)'
+              globalLocationNumber:
+                type: string
+                description: Global location number
+              organisationNumber:
+                type: string
+                description: Norwegian organisation number
+          telephone:
+            type: string
+            description: Telephone number
+          email:
+            type: string
+            description: Email address
+          category:
+            type: string
+            description: Store category
+          profile:
+            type: string
+            description: Store profile
+          storeAssortment:
+            type: string
+            description: Store assortment
+          openingHours:
+            type: object
+            properties:
+              regularHours:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    dayOfTheWeek:
+                      type: string
+                      description: Day of the week
+                    openingTime:
+                      type: string
+                      description: Opening hours
+                    closingTime:
+                      type: string
+                      description: Closing hours
+                    closed:
+                      type: boolean
+                      description: true if the store is closed that day
+              exceptionHours:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    date:
+                      type: string
+                      description: Exception date
+                    openingTime:
+                      type: string
+                      description: Opening hours
+                    closingTime:
+                      type: string
+                      description: Closing hours
+                    message:
+                      type: string
+                      description: ''
+          lastChanged:
+            type: object
+            properties:
+              date:
+                type: string
+                description: Date when the store information was last changed
+              time:
+                type: string
+                description: Time when the store information was last changed
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+security:
+  - apiKeyHeader: [ ]
+  - apiKeyQuery: [ ]

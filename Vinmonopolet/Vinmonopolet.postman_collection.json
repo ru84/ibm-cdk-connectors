@@ -1,0 +1,820 @@
+{
+	"info": {
+		"_postman_id": "ffd960d4-bb16-49eb-9074-48bd1ea04648",
+		"name": "Vinmonopolet",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27289519"
+	},
+	"item": [
+		{
+			"name": "store-details",
+			"item": [
+				{
+					"name": "Get store details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/details?storeId=<integer>&storeNameContains=<string>&changedSince=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"details"
+							],
+							"query": [
+								{
+									"key": "storeId",
+									"value": "<integer>",
+									"description": "Returns details of the Store with the given number"
+								},
+								{
+									"key": "storeNameContains",
+									"value": "<string>",
+									"description": "Returns details of Stores whose name contains the provided string"
+								},
+								{
+									"key": "changedSince",
+									"value": "<string>",
+									"description": "Returns details of Stores which have been updated since the supplied date (yyyy-MM-dd)"
+								}
+							]
+						},
+						"description": "Returns details about stores in Vinmonopolet"
+					},
+					"response": [
+						{
+							"name": "Successful operation",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Ocp-Apim-Subscription-Key",
+										"value": "<API Key>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/details?storeId=<integer>&storeNameContains=<string>&changedSince=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"details"
+									],
+									"query": [
+										{
+											"key": "storeId",
+											"value": "<integer>",
+											"description": "Returns details of the Store with the given number"
+										},
+										{
+											"key": "storeNameContains",
+											"value": "<string>",
+											"description": "Returns details of Stores whose name contains the provided string"
+										},
+										{
+											"key": "changedSince",
+											"value": "<string>",
+											"description": "Returns details of Stores which have been updated since the supplied date (yyyy-MM-dd)"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"storeId\": \"<string>\",\n    \"storeName\": \"<string>\",\n    \"status\": \"<string>\",\n    \"address\": {\n      \"street\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"city\": \"<string>\",\n      \"gpsCoord\": \"<string>\",\n      \"globalLocationNumber\": \"<string>\",\n      \"organisationNumber\": \"<string>\"\n    },\n    \"telephone\": \"<string>\",\n    \"email\": \"<string>\",\n    \"category\": \"<string>\",\n    \"profile\": \"<string>\",\n    \"storeAssortment\": \"<string>\",\n    \"openingHours\": {\n      \"regularHours\": [\n        {\n          \"dayOfTheWeek\": \"<string>\",\n          \"openingTime\": \"<string>\",\n          \"closingTime\": \"<string>\",\n          \"closed\": \"<boolean>\"\n        },\n        {\n          \"dayOfTheWeek\": \"<string>\",\n          \"openingTime\": \"<string>\",\n          \"closingTime\": \"<string>\",\n          \"closed\": \"<boolean>\"\n        }\n      ],\n      \"exceptionHours\": [\n        {\n          \"date\": \"<string>\",\n          \"openingTime\": \"<string>\",\n          \"closingTime\": \"<string>\",\n          \"message\": \"<string>\"\n        },\n        {\n          \"date\": \"<string>\",\n          \"openingTime\": \"<string>\",\n          \"closingTime\": \"<string>\",\n          \"message\": \"<string>\"\n        }\n      ]\n    },\n    \"lastChanged\": {\n      \"date\": \"<string>\",\n      \"time\": \"<string>\"\n    }\n  },\n  {\n    \"storeId\": \"<string>\",\n    \"storeName\": \"<string>\",\n    \"status\": \"<string>\",\n    \"address\": {\n      \"street\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"city\": \"<string>\",\n      \"gpsCoord\": \"<string>\",\n      \"globalLocationNumber\": \"<string>\",\n      \"organisationNumber\": \"<string>\"\n    },\n    \"telephone\": \"<string>\",\n    \"email\": \"<string>\",\n    \"category\": \"<string>\",\n    \"profile\": \"<string>\",\n    \"storeAssortment\": \"<string>\",\n    \"openingHours\": {\n      \"regularHours\": [\n        {\n          \"dayOfTheWeek\": \"<string>\",\n          \"openingTime\": \"<string>\",\n          \"closingTime\": \"<string>\",\n          \"closed\": \"<boolean>\"\n        },\n        {\n          \"dayOfTheWeek\": \"<string>\",\n          \"openingTime\": \"<string>\",\n          \"closingTime\": \"<string>\",\n          \"closed\": \"<boolean>\"\n        }\n      ],\n      \"exceptionHours\": [\n        {\n          \"date\": \"<string>\",\n          \"openingTime\": \"<string>\",\n          \"closingTime\": \"<string>\",\n          \"message\": \"<string>\"\n        },\n        {\n          \"date\": \"<string>\",\n          \"openingTime\": \"<string>\",\n          \"closingTime\": \"<string>\",\n          \"message\": \"<string>\"\n        }\n      ]\n    },\n    \"lastChanged\": {\n      \"date\": \"<string>\",\n      \"time\": \"<string>\"\n    }\n  }\n]"
+						},
+						{
+							"name": "Bad Request (wrong parameters/values supplied)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Ocp-Apim-Subscription-Key",
+										"value": "<API Key>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/details?storeId=<integer>&storeNameContains=<string>&changedSince=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"details"
+									],
+									"query": [
+										{
+											"key": "storeId",
+											"value": "<integer>",
+											"description": "Returns details of the Store with the given number"
+										},
+										{
+											"key": "storeNameContains",
+											"value": "<string>",
+											"description": "Returns details of Stores whose name contains the provided string"
+										},
+										{
+											"key": "changedSince",
+											"value": "<string>",
+											"description": "Returns details of Stores which have been updated since the supplied date (yyyy-MM-dd)"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Ocp-Apim-Subscription-Key",
+										"value": "<API Key>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/details?storeId=<integer>&storeNameContains=<string>&changedSince=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"details"
+									],
+									"query": [
+										{
+											"key": "storeId",
+											"value": "<integer>",
+											"description": "Returns details of the Store with the given number"
+										},
+										{
+											"key": "storeNameContains",
+											"value": "<string>",
+											"description": "Returns details of Stores whose name contains the provided string"
+										},
+										{
+											"key": "changedSince",
+											"value": "<string>",
+											"description": "Returns details of Stores which have been updated since the supplied date (yyyy-MM-dd)"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "product-monthly-sales-per-store",
+			"item": [
+				{
+					"name": "Get monthly sales",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/monthly-sales-per-store?fromSalesMonth=<string>&toSalesMonth=<string>&fromStoreId=<integer>&toStoreId=<integer>&productId=<integer>&vendorId=<integer>&wholesalerId=<integer>&changedSince=<string>&maxResults=<integer>&start=<integer>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"monthly-sales-per-store"
+							],
+							"query": [
+								{
+									"key": "fromSalesMonth",
+									"value": "<string>",
+									"description": "Returns sales occurrences in interval from this sales month yyyy-MM"
+								},
+								{
+									"key": "toSalesMonth",
+									"value": "<string>",
+									"description": "Returns sales occurrences in interval to this sales month yyyy-MM"
+								},
+								{
+									"key": "fromStoreId",
+									"value": "<integer>",
+									"description": "Returns sales occurrences in interval from this store id number"
+								},
+								{
+									"key": "toStoreId",
+									"value": "<integer>",
+									"description": "Returns sales occurrences in interval to this store id number"
+								},
+								{
+									"key": "productId",
+									"value": "<integer>",
+									"description": "Returns sales occurrences for requested productId"
+								},
+								{
+									"key": "vendorId",
+									"value": "<integer>",
+									"description": "Returns sales occurrences for requested vendorId"
+								},
+								{
+									"key": "wholesalerId",
+									"value": "<integer>",
+									"description": "Returns sales occurrences for requested wholesalerId"
+								},
+								{
+									"key": "changedSince",
+									"value": "<string>",
+									"description": "Returns sales occurrences that have been updated since the supplied month - only yyyy-MM-dd"
+								},
+								{
+									"key": "maxResults",
+									"value": "<integer>",
+									"description": "Limits the maximum number of sales occurrences returned in each request"
+								},
+								{
+									"key": "start",
+									"value": "<integer>",
+									"description": "Skips the supplied amount of sales occurrences, ordered by sales month, store and productId"
+								}
+							]
+						},
+						"description": "CHANGED FROM 15. MARCH 2021: Monthly sales available from the 35th day after a month.\nReturns monthly sales data. \n<br>\nMonthly sales available from the 35th day after a month, at approx 07:30 AM CET. Use parameter \"changedSince\" to get any updates / corrections made to historic sales. Select only one month to avoid pagination. If you experience timeouts, use pagination by sending parameter maxResults (default 1048575 ).\n<br>\nThrottling as per 19. August 2021: Max 6 calls per minute. Max 60 calls per day."
+					},
+					"response": [
+						{
+							"name": "Successful operation",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Ocp-Apim-Subscription-Key",
+										"value": "<API Key>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/monthly-sales-per-store?fromSalesMonth=<string>&toSalesMonth=<string>&fromStoreId=<integer>&toStoreId=<integer>&productId=<integer>&vendorId=<integer>&wholesalerId=<integer>&changedSince=<string>&maxResults=<integer>&start=<integer>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"monthly-sales-per-store"
+									],
+									"query": [
+										{
+											"key": "fromSalesMonth",
+											"value": "<string>",
+											"description": "Returns sales occurrences in interval from this sales month yyyy-MM"
+										},
+										{
+											"key": "toSalesMonth",
+											"value": "<string>",
+											"description": "Returns sales occurrences in interval to this sales month yyyy-MM"
+										},
+										{
+											"key": "fromStoreId",
+											"value": "<integer>",
+											"description": "Returns sales occurrences in interval from this store id number"
+										},
+										{
+											"key": "toStoreId",
+											"value": "<integer>",
+											"description": "Returns sales occurrences in interval to this store id number"
+										},
+										{
+											"key": "productId",
+											"value": "<integer>",
+											"description": "Returns sales occurrences for requested productId"
+										},
+										{
+											"key": "vendorId",
+											"value": "<integer>",
+											"description": "Returns sales occurrences for requested vendorId"
+										},
+										{
+											"key": "wholesalerId",
+											"value": "<integer>",
+											"description": "Returns sales occurrences for requested wholesalerId"
+										},
+										{
+											"key": "changedSince",
+											"value": "<string>",
+											"description": "Returns sales occurrences that have been updated since the supplied month - only yyyy-MM-dd"
+										},
+										{
+											"key": "maxResults",
+											"value": "<integer>",
+											"description": "Limits the maximum number of sales occurrences returned in each request"
+										},
+										{
+											"key": "start",
+											"value": "<integer>",
+											"description": "Skips the supplied amount of sales occurrences, ordered by sales month, store and productId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"salesMonth\": \"<string>\",\n    \"storeSales\": [\n      {\n        \"storeId\": \"<string>\",\n        \"sales\": [\n          {\n            \"productId\": \"<string>\",\n            \"salesVolume\": \"<number>\",\n            \"salesQuantity\": \"<number>\",\n            \"lastChanged\": {\n              \"date\": \"<string>\",\n              \"time\": \"<string>\"\n            }\n          },\n          {\n            \"productId\": \"<string>\",\n            \"salesVolume\": \"<number>\",\n            \"salesQuantity\": \"<number>\",\n            \"lastChanged\": {\n              \"date\": \"<string>\",\n              \"time\": \"<string>\"\n            }\n          }\n        ]\n      },\n      {\n        \"storeId\": \"<string>\",\n        \"sales\": [\n          {\n            \"productId\": \"<string>\",\n            \"salesVolume\": \"<number>\",\n            \"salesQuantity\": \"<number>\",\n            \"lastChanged\": {\n              \"date\": \"<string>\",\n              \"time\": \"<string>\"\n            }\n          },\n          {\n            \"productId\": \"<string>\",\n            \"salesVolume\": \"<number>\",\n            \"salesQuantity\": \"<number>\",\n            \"lastChanged\": {\n              \"date\": \"<string>\",\n              \"time\": \"<string>\"\n            }\n          }\n        ]\n      }\n    ]\n  },\n  {\n    \"salesMonth\": \"<string>\",\n    \"storeSales\": [\n      {\n        \"storeId\": \"<string>\",\n        \"sales\": [\n          {\n            \"productId\": \"<string>\",\n            \"salesVolume\": \"<number>\",\n            \"salesQuantity\": \"<number>\",\n            \"lastChanged\": {\n              \"date\": \"<string>\",\n              \"time\": \"<string>\"\n            }\n          },\n          {\n            \"productId\": \"<string>\",\n            \"salesVolume\": \"<number>\",\n            \"salesQuantity\": \"<number>\",\n            \"lastChanged\": {\n              \"date\": \"<string>\",\n              \"time\": \"<string>\"\n            }\n          }\n        ]\n      },\n      {\n        \"storeId\": \"<string>\",\n        \"sales\": [\n          {\n            \"productId\": \"<string>\",\n            \"salesVolume\": \"<number>\",\n            \"salesQuantity\": \"<number>\",\n            \"lastChanged\": {\n              \"date\": \"<string>\",\n              \"time\": \"<string>\"\n            }\n          },\n          {\n            \"productId\": \"<string>\",\n            \"salesVolume\": \"<number>\",\n            \"salesQuantity\": \"<number>\",\n            \"lastChanged\": {\n              \"date\": \"<string>\",\n              \"time\": \"<string>\"\n            }\n          }\n        ]\n      }\n    ]\n  }\n]"
+						},
+						{
+							"name": "Bad Request (wrong parameters/values supplied)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Ocp-Apim-Subscription-Key",
+										"value": "<API Key>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/monthly-sales-per-store?fromSalesMonth=<string>&toSalesMonth=<string>&fromStoreId=<integer>&toStoreId=<integer>&productId=<integer>&vendorId=<integer>&wholesalerId=<integer>&changedSince=<string>&maxResults=<integer>&start=<integer>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"monthly-sales-per-store"
+									],
+									"query": [
+										{
+											"key": "fromSalesMonth",
+											"value": "<string>",
+											"description": "Returns sales occurrences in interval from this sales month yyyy-MM"
+										},
+										{
+											"key": "toSalesMonth",
+											"value": "<string>",
+											"description": "Returns sales occurrences in interval to this sales month yyyy-MM"
+										},
+										{
+											"key": "fromStoreId",
+											"value": "<integer>",
+											"description": "Returns sales occurrences in interval from this store id number"
+										},
+										{
+											"key": "toStoreId",
+											"value": "<integer>",
+											"description": "Returns sales occurrences in interval to this store id number"
+										},
+										{
+											"key": "productId",
+											"value": "<integer>",
+											"description": "Returns sales occurrences for requested productId"
+										},
+										{
+											"key": "vendorId",
+											"value": "<integer>",
+											"description": "Returns sales occurrences for requested vendorId"
+										},
+										{
+											"key": "wholesalerId",
+											"value": "<integer>",
+											"description": "Returns sales occurrences for requested wholesalerId"
+										},
+										{
+											"key": "changedSince",
+											"value": "<string>",
+											"description": "Returns sales occurrences that have been updated since the supplied month - only yyyy-MM-dd"
+										},
+										{
+											"key": "maxResults",
+											"value": "<integer>",
+											"description": "Limits the maximum number of sales occurrences returned in each request"
+										},
+										{
+											"key": "start",
+											"value": "<integer>",
+											"description": "Skips the supplied amount of sales occurrences, ordered by sales month, store and productId"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Ocp-Apim-Subscription-Key",
+										"value": "<API Key>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/monthly-sales-per-store?fromSalesMonth=<string>&toSalesMonth=<string>&fromStoreId=<integer>&toStoreId=<integer>&productId=<integer>&vendorId=<integer>&wholesalerId=<integer>&changedSince=<string>&maxResults=<integer>&start=<integer>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"monthly-sales-per-store"
+									],
+									"query": [
+										{
+											"key": "fromSalesMonth",
+											"value": "<string>",
+											"description": "Returns sales occurrences in interval from this sales month yyyy-MM"
+										},
+										{
+											"key": "toSalesMonth",
+											"value": "<string>",
+											"description": "Returns sales occurrences in interval to this sales month yyyy-MM"
+										},
+										{
+											"key": "fromStoreId",
+											"value": "<integer>",
+											"description": "Returns sales occurrences in interval from this store id number"
+										},
+										{
+											"key": "toStoreId",
+											"value": "<integer>",
+											"description": "Returns sales occurrences in interval to this store id number"
+										},
+										{
+											"key": "productId",
+											"value": "<integer>",
+											"description": "Returns sales occurrences for requested productId"
+										},
+										{
+											"key": "vendorId",
+											"value": "<integer>",
+											"description": "Returns sales occurrences for requested vendorId"
+										},
+										{
+											"key": "wholesalerId",
+											"value": "<integer>",
+											"description": "Returns sales occurrences for requested wholesalerId"
+										},
+										{
+											"key": "changedSince",
+											"value": "<string>",
+											"description": "Returns sales occurrences that have been updated since the supplied month - only yyyy-MM-dd"
+										},
+										{
+											"key": "maxResults",
+											"value": "<integer>",
+											"description": "Limits the maximum number of sales occurrences returned in each request"
+										},
+										{
+											"key": "start",
+											"value": "<integer>",
+											"description": "Skips the supplied amount of sales occurrences, ordered by sales month, store and productId"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "product-details-normal",
+			"item": [
+				{
+					"name": "Get details-normal",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/details-normal?productId=<string>&vendorId=<integer>&manufacturerId=<integer>&wholesalerId=<integer>&changedSince=<string>&productShortNameContains=<string>&maxResults=<integer>&start=<integer>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"details-normal"
+							],
+							"query": [
+								{
+									"key": "productId",
+									"value": "<string>",
+									"description": "Returns details of all products that match productId"
+								},
+								{
+									"key": "vendorId",
+									"value": "<integer>",
+									"description": "Returns details of all products that match vendorId"
+								},
+								{
+									"key": "manufacturerId",
+									"value": "<integer>",
+									"description": "Returns details of all products that match manufacturerId"
+								},
+								{
+									"key": "wholesalerId",
+									"value": "<integer>",
+									"description": "Returns details of all products that match wholesalerId"
+								},
+								{
+									"key": "changedSince",
+									"value": "<string>",
+									"description": "Returns details of all products that have been updated since the supplied date - only numeric yyyy-MM-dd"
+								},
+								{
+									"key": "productShortNameContains",
+									"value": "<string>",
+									"description": "Returns details of all products where productShortName contains the supplied string"
+								},
+								{
+									"key": "maxResults",
+									"value": "<integer>",
+									"description": "Limits the maximum number of products returned in each request"
+								},
+								{
+									"key": "start",
+									"value": "<integer>",
+									"description": "Skips the supplied amount of products, ordered by productID"
+								}
+							]
+						},
+						"description": "CHANGED JSON RESPONSE FROM 10. APRIL 2021!\nReturns master data details on Vinmonopolet's products in basic, one lot, test and ordering ranges. <br>\nMaster data is updated approx 05:45 AM CET every day. Use parameter \"changedSince\" to get only updated products, including products that have been removed from basic, one lot, test and ordering ranges since supplied date.\n<br>\nThrottling as per 15. November 2019: Max 60 calls per minute. Max 4000 calls per day."
+					},
+					"response": [
+						{
+							"name": "Successful operation",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Ocp-Apim-Subscription-Key",
+										"value": "<API Key>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/details-normal?productId=<string>&vendorId=<integer>&manufacturerId=<integer>&wholesalerId=<integer>&changedSince=<string>&productShortNameContains=<string>&maxResults=<integer>&start=<integer>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"details-normal"
+									],
+									"query": [
+										{
+											"key": "productId",
+											"value": "<string>",
+											"description": "Returns details of all products that match productId"
+										},
+										{
+											"key": "vendorId",
+											"value": "<integer>",
+											"description": "Returns details of all products that match vendorId"
+										},
+										{
+											"key": "manufacturerId",
+											"value": "<integer>",
+											"description": "Returns details of all products that match manufacturerId"
+										},
+										{
+											"key": "wholesalerId",
+											"value": "<integer>",
+											"description": "Returns details of all products that match wholesalerId"
+										},
+										{
+											"key": "changedSince",
+											"value": "<string>",
+											"description": "Returns details of all products that have been updated since the supplied date - only numeric yyyy-MM-dd"
+										},
+										{
+											"key": "productShortNameContains",
+											"value": "<string>",
+											"description": "Returns details of all products where productShortName contains the supplied string"
+										},
+										{
+											"key": "maxResults",
+											"value": "<integer>",
+											"description": "Limits the maximum number of products returned in each request"
+										},
+										{
+											"key": "start",
+											"value": "<integer>",
+											"description": "Skips the supplied amount of products, ordered by productID"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"basic\": {\n      \"productId\": \"<string>\",\n      \"productShortName\": \"<string>\"\n    },\n    \"lastChanged\": {\n      \"date\": \"<string>\",\n      \"time\": \"<string>\"\n    }\n  },\n  {\n    \"basic\": {\n      \"productId\": \"<string>\",\n      \"productShortName\": \"<string>\"\n    },\n    \"lastChanged\": {\n      \"date\": \"<string>\",\n      \"time\": \"<string>\"\n    }\n  }\n]"
+						},
+						{
+							"name": "Bad Request (wrong parameter values given)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Ocp-Apim-Subscription-Key",
+										"value": "<API Key>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/details-normal?productId=<string>&vendorId=<integer>&manufacturerId=<integer>&wholesalerId=<integer>&changedSince=<string>&productShortNameContains=<string>&maxResults=<integer>&start=<integer>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"details-normal"
+									],
+									"query": [
+										{
+											"key": "productId",
+											"value": "<string>",
+											"description": "Returns details of all products that match productId"
+										},
+										{
+											"key": "vendorId",
+											"value": "<integer>",
+											"description": "Returns details of all products that match vendorId"
+										},
+										{
+											"key": "manufacturerId",
+											"value": "<integer>",
+											"description": "Returns details of all products that match manufacturerId"
+										},
+										{
+											"key": "wholesalerId",
+											"value": "<integer>",
+											"description": "Returns details of all products that match wholesalerId"
+										},
+										{
+											"key": "changedSince",
+											"value": "<string>",
+											"description": "Returns details of all products that have been updated since the supplied date - only numeric yyyy-MM-dd"
+										},
+										{
+											"key": "productShortNameContains",
+											"value": "<string>",
+											"description": "Returns details of all products where productShortName contains the supplied string"
+										},
+										{
+											"key": "maxResults",
+											"value": "<integer>",
+											"description": "Limits the maximum number of products returned in each request"
+										},
+										{
+											"key": "start",
+											"value": "<integer>",
+											"description": "Skips the supplied amount of products, ordered by productID"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Ocp-Apim-Subscription-Key",
+										"value": "<API Key>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/details-normal?productId=<string>&vendorId=<integer>&manufacturerId=<integer>&wholesalerId=<integer>&changedSince=<string>&productShortNameContains=<string>&maxResults=<integer>&start=<integer>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"details-normal"
+									],
+									"query": [
+										{
+											"key": "productId",
+											"value": "<string>",
+											"description": "Returns details of all products that match productId"
+										},
+										{
+											"key": "vendorId",
+											"value": "<integer>",
+											"description": "Returns details of all products that match vendorId"
+										},
+										{
+											"key": "manufacturerId",
+											"value": "<integer>",
+											"description": "Returns details of all products that match manufacturerId"
+										},
+										{
+											"key": "wholesalerId",
+											"value": "<integer>",
+											"description": "Returns details of all products that match wholesalerId"
+										},
+										{
+											"key": "changedSince",
+											"value": "<string>",
+											"description": "Returns details of all products that have been updated since the supplied date - only numeric yyyy-MM-dd"
+										},
+										{
+											"key": "productShortNameContains",
+											"value": "<string>",
+											"description": "Returns details of all products where productShortName contains the supplied string"
+										},
+										{
+											"key": "maxResults",
+											"value": "<integer>",
+											"description": "Limits the maximum number of products returned in each request"
+										},
+										{
+											"key": "start",
+											"value": "<integer>",
+											"description": "Skips the supplied amount of products, ordered by productID"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		}
+	]
+}
